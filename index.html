@@ -381,49 +381,35 @@
         </div>
     </section>
 
-    <!-- Simulador de Corrida Editável -->
+    <!-- Simulador de Corrida Editável com Cálculo Inteligente Integrado -->
     <section id="simulador" class="py-20 bg-darkBg border-t border-gray-800/40">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <span class="text-green-400 font-semibold text-xs tracking-widest uppercase">Orçamento Sem Compromisso</span>
                 <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-2 mb-4">Simulador de Corrida</h2>
-                <p class="text-gray-400">Preencha abaixo ou digite seu destino direto na <a href="#tabela-precos" class="text-accent underline font-semibold">Tabela Oficial</a> para preencher automaticamente. Envie direto para o WhatsApp <strong>(31) 98428-0227</strong>.</p>
+                <p class="text-gray-400">Digite a origem e o destino abaixo. O valor estimado com base na <strong>Portaria Oficial 5.884/2026</strong> será preenchido automaticamente!</p>
             </div>
 
             <form id="form-simulador" onsubmit="enviarSimulacaoWhatsApp(event)" class="rounded-2xl bg-cardBg border border-gray-800 p-6 sm:p-10 shadow-2xl space-y-6">
                 
-                <div>
-                    <label class="block text-sm font-semibold text-gray-200 mb-3">1. Sentido da Viagem:</label>
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <button type="button" id="btn-rota-1" onclick="setSentidoRota('Confins (CNF) ➔ Belo Horizonte / Região')" class="p-4 rounded-xl border border-blue-500 bg-blue-500/10 text-white font-medium text-left transition-all flex items-center justify-between">
-                            <span>Confins (CNF) ➔ Destino</span>
-                            <i id="icon-rota-1" class="fa-solid fa-circle-check text-accent"></i>
-                        </button>
-                        <button type="button" id="btn-rota-2" onclick="setSentidoRota('Belo Horizonte / Região ➔ Confins (CNF)')" class="p-4 rounded-xl border border-gray-700 bg-darkBg text-gray-300 font-medium text-left transition-all flex items-center justify-between">
-                            <span>Destino ➔ Confins (CNF)</span>
-                            <i id="icon-rota-2" class="fa-solid fa-circle text-gray-600"></i>
-                        </button>
-                    </div>
-                </div>
-
                 <div class="grid sm:grid-cols-2 gap-6">
-                    <div>
+                    <div class="relative">
                         <label for="input-origem" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Origem Exata (Editável):</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
                                 <i class="fa-solid fa-location-dot"></i>
                             </span>
-                            <input type="text" id="input-origem" value="Aeroporto Internacional de Confins (CNF)" placeholder="Ex: Aeroporto CNF ou Endereço" required class="w-full pl-10 pr-4 py-3 rounded-xl bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-accent transition-colors">
+                            <input type="text" id="input-origem" placeholder="Ex: Aeroporto de Confins, Savassi, etc." required class="w-full pl-10 pr-4 py-3 rounded-xl bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-accent transition-colors">
                         </div>
                     </div>
 
-                    <div>
+                    <div class="relative">
                         <label for="input-destino" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Destino Exato (Editável):</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
                                 <i class="fa-solid fa-flag-checkered"></i>
                             </span>
-                            <input type="text" id="input-destino" value="Bairro Savassi, Belo Horizonte - MG" placeholder="Ex: Bairro, Hotel ou Cidade" required class="w-full pl-10 pr-4 py-3 rounded-xl bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-accent transition-colors">
+                            <input type="text" id="input-destino" oninput="calcularValorAutomatico()" placeholder="Ex: Savassi, Centro, Betim, Ouro Preto..." required class="w-full pl-10 pr-4 py-3 rounded-xl bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-accent transition-colors">
                         </div>
                     </div>
                 </div>
@@ -434,7 +420,7 @@
                         <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-emerald-400 font-bold">
                             R$
                         </span>
-                        <input type="text" id="input-valor" value="Consulte a Tabela Abaixo" placeholder="Ex: R$ 198,00" class="w-full pl-10 pr-4 py-3 rounded-xl bg-darkBg border border-emerald-500/50 text-emerald-400 font-bold text-sm focus:outline-none focus:border-emerald-400 transition-colors">
+                        <input type="text" id="input-valor" placeholder="Digite a origem e destino acima para calcular" class="w-full pl-10 pr-4 py-3 rounded-xl bg-darkBg border border-emerald-500/50 text-emerald-400 font-bold text-sm focus:outline-none focus:border-emerald-400 transition-colors">
                     </div>
                 </div>
 
@@ -560,7 +546,7 @@
                 </div>
             </div>
 
-            <!-- Tabela Oculta Inicialmente (só aparece após digitar ou filtrar) -->
+            <!-- Tabela Oculta Inicialmente -->
             <div id="tabelaContainerWrapper" class="hidden space-y-4">
                 <div class="flex items-center justify-between mb-2 px-1">
                     <div id="resultsCount" class="text-xs font-semibold text-gray-400 flex items-center gap-2">
@@ -867,41 +853,11 @@
 
         slideInterval = setInterval(nextSlide, 4500);
 
-        let sentidoRotaSelecionada = 'Confins (CNF) ➔ Belo Horizonte / Região';
-
-        function setSentidoRota(sentido) {
-            sentidoRotaSelecionada = sentido;
-            const btn1 = document.getElementById('btn-rota-1');
-            const btn2 = document.getElementById('btn-rota-2');
-            const icon1 = document.getElementById('icon-rota-1');
-            const icon2 = document.getElementById('icon-rota-2');
-
-            const origInput = document.getElementById('input-origem');
-            const destInput = document.getElementById('input-destino');
-
-            if (sentido.includes('Confins (CNF) ➔')) {
-                btn1.className = 'p-4 rounded-xl border border-blue-500 bg-blue-500/10 text-white font-medium text-left transition-all flex items-center justify-between';
-                btn2.className = 'p-4 rounded-xl border border-gray-700 bg-darkBg text-gray-300 font-medium text-left transition-all flex items-center justify-between';
-                icon1.className = 'fa-solid fa-circle-check text-accent';
-                icon2.className = 'fa-solid fa-circle text-gray-600';
-                
-                origInput.value = 'Aeroporto Internacional de Confins (CNF)';
-            } else {
-                btn2.className = 'p-4 rounded-xl border border-blue-500 bg-blue-500/10 text-white font-medium text-left transition-all flex items-center justify-between';
-                btn1.className = 'p-4 rounded-xl border border-gray-700 bg-darkBg text-gray-300 font-medium text-left transition-all flex items-center justify-between';
-                icon2.className = 'fa-solid fa-circle-check text-accent';
-                icon1.className = 'fa-solid fa-circle text-gray-600';
-
-                destInput.value = 'Aeroporto Internacional de Confins (CNF)';
-            }
-        }
-
         function limparSimulador() {
             document.getElementById('form-simulador').reset();
-            setSentidoRota('Confins (CNF) ➔ Belo Horizonte / Região');
-            document.getElementById('input-origem').value = 'Aeroporto Internacional de Confins (CNF)';
-            document.getElementById('input-destino').value = 'Bairro Savassi, Belo Horizonte - MG';
-            document.getElementById('input-valor').value = 'Consulte a Tabela Abaixo';
+            document.getElementById('input-origem').value = '';
+            document.getElementById('input-destino').value = '';
+            document.getElementById('input-valor').value = '';
         }
 
         function enviarSimulacaoWhatsApp(event) {
@@ -920,10 +876,9 @@
 
             const mensagem = `Olá Miter Táxi! Gostaria de um orçamento de traslado:%0A` +
                              `----------------------------%0A` +
-                             `🚕 *Sentido:* ${sentidoRotaSelecionada}%0A` +
                              `📍 *Origem:* ${origem}%0A` +
                              `🏁 *Destino:* ${destino}%0A` +
-                             `💰 *Valor Tabela Oficial:* ${valorEst}%0A` +
+                             `💰 *Valor Estimado:* ${valorEst}%0A` +
                              `📅 *Data:* ${data}%0A` +
                              `⏰ *Horário/Voo:* ${hora}%0A` +
                              `👥 *Passageiros:* ${passageiros}%0A` +
@@ -1070,6 +1025,26 @@
             return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         }
 
+        function calcularValorAutomatico() {
+            const destInput = document.getElementById('input-destino').value.trim();
+            const valorInput = document.getElementById('input-valor');
+
+            if (!destInput) {
+                valorInput.value = '';
+                return;
+            }
+
+            const query = normalizeText(destInput);
+            const enconTrado = TAXI_DATABASE.find(item => {
+                const itemNome = normalizeText(item.name);
+                return itemNome.includes(query) || query.includes(itemNome);
+            });
+
+            if (enconTrado) {
+                valorInput.value = formatCurrency(enconTrado.price);
+            }
+        }
+
         function initCategories() {
             const categories = ["TODOS", ...new Set(TAXI_DATABASE.map(item => item.category))];
             
@@ -1121,7 +1096,7 @@
         }
 
         window.selecionarDestinoSimulador = function(nomeDestino, precoDestino) {
-            document.getElementById('input-destino').value = nomeDestino + ' (' + formatCurrency(precoDestino) + ')';
+            document.getElementById('input-destino').value = nomeDestino;
             document.getElementById('input-valor').value = formatCurrency(precoDestino);
             document.getElementById('simulador').scrollIntoView({ behavior: 'smooth' });
         };
