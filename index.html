@@ -357,7 +357,7 @@
                     <ul class="space-y-4 text-sm text-gray-300">
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-plane text-accent text-base mt-1"></i>
-                            <span><strong>Rastreamento de Voo em Tempo Real:</strong> Seu táxi estará a postos mesmo se a aeronave adiantar ou atrasar.</span>
+                            <span><strong>Rastreamento de Voo in Real Time:</strong> Seu táxi estará a postos mesmo se a aeronave adiantar ou atrasar.</span>
                         </li>
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-credit-card text-accent text-base mt-1"></i>
@@ -583,13 +583,13 @@
         </div>
     </section>
 
-    <!-- Assistente Virtual -->
+    <!-- Miter Assistente Virtual.CNF -->
     <section id="atendimento-virtual" class="py-20 bg-darkBg border-t border-gray-800/40">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-accent font-semibold text-xs tracking-widest uppercase">Suporte 24/7 Automatizado</span>
-                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-2 mb-4">Assistente Virtual Inteligente</h2>
-                <p class="text-gray-400">Tire suas dúvidas instantaneamente sobre agendamento de táxi, tarifas oficiais, voos e bagagens.</p>
+                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-2 mb-4">Miter Assistente Virtual.CNF</h2>
+                <p class="text-gray-400">Tire suas dúvidas e consulte valores oficiais instantaneamente digitando seu destino no chat.</p>
             </div>
 
             <div class="rounded-2xl bg-cardBg border border-gray-800 overflow-hidden shadow-2xl grid lg:grid-cols-12">
@@ -600,7 +600,7 @@
                                 <i class="fa-solid fa-robot text-lg"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-white text-sm">Miter Bot • CNF</h3>
+                                <h3 class="font-bold text-white text-sm">Miter Assistente Virtual.CNF</h3>
                                 <p class="text-[11px] text-green-400 flex items-center gap-1">
                                     <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Online 24h
                                 </p>
@@ -660,15 +660,15 @@
                                 <i class="fa-solid fa-taxi"></i>
                             </div>
                             <div class="bg-cardBg border border-gray-800 rounded-2xl p-3.5 text-xs text-gray-200 leading-relaxed shadow-sm">
-                                Olá! Sou o assistente virtual da <strong>Miter Táxi Especial CNF</strong>. 🚕<br><br>
-                                Como posso te ajudar hoje? Selecione uma dúvida à esquerda ou consulte a tabela de preços oficial digitando seu destino abaixo!
+                                Olá! Sou o <strong>Miter Assistente Virtual.CNF</strong>. 🚕<br><br>
+                                Digite o nome do seu bairro, destino ou cidade aqui no chat para consultar o valor oficial da tabela (Portaria 5.884/2026) na hora!
                             </div>
                         </div>
                     </div>
 
                     <div class="p-3 border-t border-gray-800 bg-cardBg/60">
                         <form onsubmit="enviarMensagemChat(event)" class="flex items-center gap-2">
-                            <input type="text" id="chat-input" placeholder="Digite sua pergunta (ex: preço, aeroporto, mala)..." class="flex-1 bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-xs rounded-xl px-4 py-3 focus:outline-none focus:border-accent">
+                            <input type="text" id="chat-input" placeholder="Digite seu destino (ex: Savassi, Pampulha, Betim)..." class="flex-1 bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-xs rounded-xl px-4 py-3 focus:outline-none focus:border-accent">
                             <button type="submit" class="w-10 h-10 rounded-xl bg-accent hover:bg-accentHover text-white flex items-center justify-center transition-all shrink-0">
                                 <i class="fa-solid fa-paper-plane text-xs"></i>
                             </button>
@@ -1208,7 +1208,7 @@
         });
 
         const botAnswers = {
-            valores: "💰 <strong>Tarifas e Tabela Oficial:</strong> Nossos preços seguem rigorosamente a Portaria Nº 5.884/2026. Digite o nome do seu bairro ou cidade na barra de pesquisa da tabela oficial para consultar os valores!",
+            valores: "💰 <strong>Tarifas e Tabela Oficial:</strong> Nossos preços seguem rigorosamente a Portaria Nº 5.884/2026. Digite o nome do seu bairro ou cidade aqui no chat para eu consultar o valor exato para você!",
             madrugada: "🌙 <strong>Atendimento na Madrugada:</strong> Sim! Atendemos 24 horas por dia, 7 dias por semana sob agendamento prévio. Seu motorista estará no aeroporto no horário exato do seu voo.",
             atraso: "✈️ <strong>Monitoramento de Voo:</strong> Rastreio o seu voo em tempo real. Se o pouso atrasar ou adiantar, estarei te aguardando no desembarque sem custo de espera!",
             pagamento: "💳 <strong>Formas de Pagamento:</strong> Aceito Pix, cartões de crédito e débito na maquininha a bordo, dinheiro em espécie e faturamento para empresas parceiras cadastradas.",
@@ -1257,12 +1257,36 @@
             chatWin.scrollTop = chatWin.scrollHeight;
 
             setTimeout(() => {
-                let resposta = "Para agendamentos imediatos ou detalhes personalizados sobre '" + texto + "', fale diretamente comigo pelo WhatsApp <strong>(31) 98428-0227</strong>.";
-                const txtLower = texto.toLowerCase();
-                if (txtLower.includes('preço') || txtLower.includes('valor') || txtLower.includes('tabela')) resposta = botAnswers.valores;
-                else if (txtLower.includes('madrugada')) resposta = botAnswers.madrugada;
-                else if (txtLower.includes('voo') || txtLower.includes('atraso')) resposta = botAnswers.atraso;
-                else if (txtLower.includes('pagar') || txtLower.includes('pix')) resposta = botAnswers.pagamento;
+                const query = normalizeText(texto);
+                let resposta = "";
+
+                // Verifica se perguntou sobre preço/tabela ou se digitou um destino da tabela
+                const encontrado = TAXI_DATABASE.find(item => {
+                    const nomeItem = normalizeText(item.name);
+                    return nomeItem.includes(query) || query.includes(nomeItem);
+                });
+
+                if (encontrado) {
+                    const precoFormatado = formatCurrency(encontrado.price);
+                    const msgZap = encodeURIComponent(`Olá Miter Táxi! Consultei no site o destino *${encontrado.name}* (${encontrado.category}) por *${precoFormatado}* (Portaria 5.884/2026) e gostaria de agendar.`);
+                    resposta = `📍 Destino encontrado na Tabela Oficial (Portaria 5.884/2026):<br>` +
+                               `<strong class="text-white text-sm">${encontrado.name}</strong> (${encontrado.category})<br>` +
+                               `💰 Valor Estimado: <strong class="text-emerald-400 text-sm">${precoFormatado}</strong><br><br>` +
+                               `<a href="https://wa.me/5531984280227?text=${msgZap}" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-green-600 text-white font-bold text-xs hover:bg-green-700 transition-all"><i class="fa-brands fa-whatsapp text-sm"></i> Agendar este destino no WhatsApp</a>`;
+                } else {
+                    const txtLower = texto.toLowerCase();
+                    if (txtLower.includes('preço') || txtLower.includes('valor') || txtLower.includes('tabela') || txtLower.includes('quanto')) {
+                        resposta = botAnswers.valores;
+                    } else if (txtLower.includes('madrugada')) {
+                        resposta = botAnswers.madrugada;
+                    } else if (txtLower.includes('voo') || txtLower.includes('atraso')) {
+                        resposta = botAnswers.atraso;
+                    } else if (txtLower.includes('pagar') || txtLower.includes('pix')) {
+                        resposta = botAnswers.pagamento;
+                    } else {
+                        resposta = `Não encontrei "${texto}" exato na tabela oficial da Portaria 5.884/2026. Para cotações personalizadas, fale diretamente comigo pelo WhatsApp <strong>(31) 98428-0227</strong>.`;
+                    }
+                }
 
                 const botMsg = document.createElement('div');
                 botMsg.className = 'flex items-start gap-3 max-w-[85%]';
@@ -1287,7 +1311,7 @@
                         <i class="fa-solid fa-taxi"></i>
                     </div>
                     <div class="bg-cardBg border border-gray-800 rounded-2xl p-3.5 text-xs text-gray-200 leading-relaxed shadow-sm">
-                        Conversa reiniciada! Como posso te ajudar com seu táxi para Confins? 🚕
+                        Conversa reiniciada! Digite o nome do seu bairro ou destino para consultar o valor na tabela oficial. 🚕
                     </div>
                 </div>
             `;
