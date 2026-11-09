@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Táxi Especial CNF | Aeroporto de Confins - Motorista Credenciado</title>
-    <meta name="description" content="Táxi executivo credenciado com mais de 20 anos de experiência no Aeroporto Internacional de Confins (CNF). Traslados seguros, pontuais e com conforto para Belo Horizonte e região.">
+    <title>Miter Táxi Especial CNF | Aeroporto de Confins - Motorista Credenciado</title>
+    <meta name="description" content="Táxi executivo credenciado no Aeroporto de Confins (CNF). Traslados pontuais, seguros e confortáveis para Belo Horizonte e região metropolitana.">
    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,6 +17,7 @@
                     colors: {
                         darkBg: '#0b0f17',
                         cardBg: '#131c2e',
+                        cardLight: '#1e293b',
                         accent: '#3b82f6',
                         accentHover: '#2563eb',
                         gold: '#d4af37'
@@ -33,21 +35,40 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         .glass {
-            background: rgba(19, 28, 46, 0.7);
+            background: rgba(19, 28, 46, 0.75);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .slide-fade {
+            transition: opacity 0.7s ease-in-out;
+        }
+        /* Custom Scrollbar for Chatbot */
+        .chat-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-scroll::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body class="bg-darkBg text-gray-100 antialiased selection:bg-blue-600 selection:text-white">
 
     <!-- Header / Navbar -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-gray-800/50">
+    <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-gray-800/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2">
-                <i class="fa-solid fa-taxi text-2xl text-accent"></i>
-                <span class="text-xl font-bold tracking-wider text-white">MITER<span class="text-accent">TAXI</span></span>
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+                    <i class="fa-solid fa-taxi text-xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-wider text-white leading-none">MITER<span class="text-accent">TAXI</span></span>
+                    <span class="text-[10px] text-gray-400 font-medium tracking-widest uppercase">Aeroporto Confins • CNF</span>
+                </div>
             </a>
           
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
@@ -55,119 +76,182 @@
                 <a href="#servicos" class="hover:text-accent transition-colors">Serviços</a>
                 <a href="#sobre" class="hover:text-accent transition-colors">Sobre Mim</a>
                 <a href="#simulador" class="hover:text-accent transition-colors">Orçamento</a>
-                <a href="#faq" class="hover:text-accent transition-colors">Dúvidas</a>
+                <a href="#atendimento-virtual" class="hover:text-accent transition-colors">Atendimento Virtual</a>
             </nav>
 
-            <div class="flex items-center gap-4">
-                <a href="https://wa.me/5531984280227?text=Olá!%20Gostaria%20de%20agendar%20uma%20corrida%20para%20o%20Aeroporto%20de%20Confins." target="_blank" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-green-600 hover:bg-green-700 text-white text-sm font-semibold transition-all shadow-lg shadow-green-600/20">
+            <div class="flex items-center gap-3 sm:gap-4">
+                <a href="https://www.instagram.com/mitertaxi" target="_blank" rel="noopener noreferrer" title="Siga no Instagram @mitertaxi" class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white hover:opacity-90 transition-all shadow-md">
+                    <i class="fa-brands fa-instagram text-lg"></i>
+                </a>
+
+                <a href="https://wa.me/5531984280227?text=Olá!%20Gostaria%20de%20agendar%20um%20t%C3%A1xi%20para%20o%20Aeroporto%20de%20Confins." target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-green-600 hover:bg-green-700 text-white text-sm font-semibold transition-all shadow-lg shadow-green-600/20">
                     <i class="fa-brands fa-whatsapp mr-2 text-base"></i> WhatsApp
                 </a>
-                <button id="menu-btn" class="md:hidden text-gray-300 focus:outline-none">
+
+                <button id="menu-btn" aria-label="Abrir Menu" class="md:hidden text-gray-300 focus:outline-none p-2 rounded-lg bg-gray-800/60 border border-gray-700">
                     <i class="fa-solid fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass border-b border-gray-800 px-4 pt-2 pb-6 space-y-3">
-            <a href="#diferenciais" class="block py-2 text-gray-300 hover:text-accent">Diferenciais</a>
-            <a href="#servicos" class="block py-2 text-gray-300 hover:text-accent">Serviços</a>
-            <a href="#sobre" class="block py-2 text-gray-300 hover:text-accent">Sobre Mim</a>
-            <a href="#simulador" class="block py-2 text-gray-300 hover:text-accent">Orçamento</a>
-            <a href="#faq" class="block py-2 text-gray-300 hover:text-accent">Dúvidas</a>
+        <div id="mobile-menu" class="hidden md:hidden glass border-b border-gray-800 px-4 pt-3 pb-6 space-y-3">
+            <a href="#diferenciais" class="block py-2 text-gray-300 hover:text-accent font-medium">Diferenciais</a>
+            <a href="#servicos" class="block py-2 text-gray-300 hover:text-accent font-medium">Serviços</a>
+            <a href="#sobre" class="block py-2 text-gray-300 hover:text-accent font-medium">Sobre Mim</a>
+            <a href="#simulador" class="block py-2 text-gray-300 hover:text-accent font-medium">Orçamento</a>
+            <a href="#atendimento-virtual" class="block py-2 text-gray-300 hover:text-accent font-medium">Atendimento Virtual</a>
+            <a href="https://wa.me/5531984280227?text=Olá!%20Gostaria%20de%20agendar%20um%20t%C3%A1xi%20para%20o%20Aeroporto%20de%20Confins." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white font-semibold transition-all">
+                <i class="fa-brands fa-whatsapp mr-2 text-lg"></i> Chamar no WhatsApp (31) 98428-0227
+            </a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden">
+    <!-- Hero Section with Photo Slideshow -->
+    <section class="relative pt-28 pb-16 lg:pt-36 lg:pb-28 overflow-hidden">
         <div class="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-600 via-transparent to-transparent"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-500/10 text-accent border border-blue-500/20">
-                        <i class="fa-solid fa-plane-arrival"></i> Aeroporto Internacional de Confins (CNF)
-                    </span>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-                        Táxi Especial em Confins. <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-accent">Segurança e Pontualidade.</span>
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <!-- Left Text Column -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-500/10 text-accent border border-blue-500/20">
+                        <i class="fa-solid fa-plane-arrival text-sm"></i> Aeroporto Internacional de Confins (CNF)
+                    </div>
+                    
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+                        Miter Táxi Especial. <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-accent">Pontualidade & Segurança em CNF.</span>
                     </h1>
-                    <p class="text-lg text-gray-400 leading-relaxed">
-                        Motorista credenciado com mais de 20 anos de experiência em traslados para o Aeroporto Tancredo Neves (CNF), Belo Horizonte e toda a região metropolitana. Conforto, discrição e pontualidade para seus voos.
+                    
+                    <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
+                        Motorista credenciado com vasta experiência em traslados executivos para o Aeroporto Internacional de Confins, Belo Horizonte e interior. Te servir é o meu prazer, pontualidade é o meu dever!
                     </p>
+
+                    <!-- CTAs -->
                     <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                        <a href="#simulador" class="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-accent hover:bg-accentHover text-white font-semibold transition-all shadow-xl shadow-blue-600/30">
-                            Simular Corrida / Orçamento <i class="fa-solid fa-arrow-right ml-2"></i>
+                        <a href="#simulador" class="inline-flex items-center justify-center px-7 py-4 rounded-xl bg-accent hover:bg-accentHover text-white font-semibold transition-all shadow-xl shadow-blue-600/30 group">
+                            Simular Corrida / Agendar <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                         </a>
-                        <a href="https://wa.me/5531984280227?text=Olá!%20Gostaria%20de%20consultar%20disponibilidade%20para%20o%20Aeroporto%20de%20Confins." target="_blank" class="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-green-600 hover:bg-green-700 text-white font-semibold transition-all shadow-xl shadow-green-600/20">
-                            <i class="fa-brands fa-whatsapp mr-2 text-xl"></i> Chamar no WhatsApp
+                        <a href="https://wa.me/5531984280227?text=Olá!%20Gostaria%20de%20consultar%20disponibilidade%20para%20o%20Aeroporto%20de%20Confins." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-7 py-4 rounded-xl bg-green-600 hover:bg-green-700 text-white font-semibold transition-all shadow-xl shadow-green-600/20">
+                            <i class="fa-brands fa-whatsapp mr-2 text-xl"></i> WhatsApp: (31) 98428-0227
                         </a>
                     </div>
+
+                    <!-- Key Stats -->
                     <div class="grid grid-cols-3 gap-4 pt-6 border-t border-gray-800/80">
                         <div>
-                            <p class="text-2xl font-bold text-white">+20 Anos</p>
-                            <p class="text-xs text-gray-400">De Experiência</p>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-white">+20 Anos</p>
+                            <p class="text-xs text-gray-400">De Tradição em MG</p>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold text-white">100%</p>
-                            <p class="text-xs text-gray-400">Credenciado & Seguro</p>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-white">100%</p>
+                            <p class="text-xs text-gray-400">Credenciado CNF</p>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold text-white">24h / 7d</p>
-                            <p class="text-xs text-gray-400">Atendimento sob Agendamento</p>
+                            <p class="text-2xl sm:text-3xl font-extrabold text-white">24h / 7d</p>
+                            <p class="text-xs text-gray-400">Atendimento Agendado</p>
                         </div>
                     </div>
                 </div>
-                <div class="relative">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur-lg opacity-30"></div>
-                    <div class="relative rounded-2xl overflow-hidden border border-gray-700/60 bg-cardBg p-3 shadow-2xl">
-                        <div class="h-80 sm:h-96 rounded-xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center justify-center p-8 text-center relative overflow-hidden">
-                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
-                            <i class="fa-solid fa-id-card-clip text-6xl text-accent mb-4 animate-pulse"></i>
-                            <h3 class="text-xl font-bold text-white mb-2">Profissional Credenciado CNF</h3>
-                            <p class="text-sm text-gray-400 max-w-sm">Recepção personalizada no desembarque, monitoramento de voos em tempo real e veículos revisados para sua total tranquilidade.</p>
+
+                <!-- Right Photo Slideshow Column -->
+                <div class="lg:col-span-5 relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 rounded-2xl blur-lg opacity-40"></div>
+                    
+                    <div class="relative rounded-2xl overflow-hidden border border-gray-700/80 bg-cardBg p-2 shadow-2xl">
+                        <!-- Slideshow Container -->
+                        <div class="relative h-[340px] sm:h-[400px] w-full rounded-xl overflow-hidden bg-gray-900">
+                            
+                            <!-- Slide 1 -->
+                            <div class="slide-item absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out">
+                                <img src="1000392566.jpg" alt="Logo Miter Taxi 261" class="w-full h-full object-contain bg-black p-4" onerror="this.onerror=null; this.src='https://placehold.co/600x600/0b0f17/3b82f6?text=Miter+Taxi+261';">
+                                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 text-center">
+                                    <span class="text-xs font-bold uppercase tracking-widest text-accent bg-blue-950/80 px-2.5 py-1 rounded-full border border-blue-500/30">Marca Oficial</span>
+                                    <p class="text-sm font-semibold text-white mt-1">"Te servir é o meu prazer. Pontualidade é o meu dever."</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="slide-item absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+                                <img src="1000392567.jpg" alt="Veículo Renault Logan Táxi Especial no Aeroporto" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x600/1e293b/ffffff?text=Veiculo+Credenciado';">
+                                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 text-center">
+                                    <span class="text-xs font-bold uppercase tracking-widest text-green-400 bg-green-950/80 px-2.5 py-1 rounded-full border border-green-500/30">Frota Revisada</span>
+                                    <p class="text-sm font-semibold text-white mt-1">Veículo Táxi Especial regulamentado e higienizado em Confins</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="slide-item absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+                                <img src="1000392568.jpg" alt="Táxi Miter em Viagens Intermunicipais" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x600/131c2e/ffffff?text=Viagens+Intermunicipais';">
+                                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 text-center">
+                                    <span class="text-xs font-bold uppercase tracking-widest text-amber-300 bg-amber-950/80 px-2.5 py-1 rounded-full border border-amber-500/30">Viagens & Traslados</span>
+                                    <p class="text-sm font-semibold text-white mt-1">Atendimento em Belo Horizonte, Região Metropolitana e cidades de MG</p>
+                                </div>
+                            </div>
+
+                            <!-- Navigation Arrows -->
+                            <button id="prev-slide" aria-label="Imagem Anterior" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-blue-600 text-white flex items-center justify-center backdrop-blur-md transition-all border border-white/10 z-20">
+                                <i class="fa-solid fa-chevron-left text-sm"></i>
+                            </button>
+                            <button id="next-slide" aria-label="Próxima Imagem" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-blue-600 text-white flex items-center justify-center backdrop-blur-md transition-all border border-white/10 z-20">
+                                <i class="fa-solid fa-chevron-right text-sm"></i>
+                            </button>
+
+                            <!-- Slide Indicators Dots -->
+                            <div class="absolute top-4 right-4 flex gap-1.5 z-20 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                                <button class="slide-dot w-2.5 h-2.5 rounded-full bg-blue-500 transition-all" onclick="goToSlide(0)" aria-label="Ir para foto 1"></button>
+                                <button class="slide-dot w-2.5 h-2.5 rounded-full bg-white/40 transition-all" onclick="goToSlide(1)" aria-label="Ir para foto 2"></button>
+                                <button class="slide-dot w-2.5 h-2.5 rounded-full bg-white/40 transition-all" onclick="goToSlide(2)" aria-label="Ir para foto 3"></button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Diferenciais -->
+    <!-- Diferenciais Cards (With Lighter Background Color as Requested) -->
     <section id="diferenciais" class="py-20 bg-darkBg border-t border-gray-800/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-4">Por que Viajar Comigo?</h2>
-                <p class="text-gray-400">Tradição, segurança e compromisso com o seu horário para que você nunca perca um voo.</p>
+                <span class="text-accent font-semibold text-xs tracking-widest uppercase">Excelência e Qualidade</span>
+                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-2 mb-4">Por que Viajar Comigo?</h2>
+                <p class="text-gray-400">Tradição, segurança e compromisso para que sua experiência de viagem seja perfeita.</p>
             </div>
 
+            <!-- Cards with updated lighter background container class: bg-slate-800/90 -->
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Card 1 -->
-                <div class="rounded-2xl glass p-8 border border-gray-800 hover:border-accent/50 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-accent mb-6 group-hover:bg-accent group-hover:text-white transition-all">
-                        <i class="fa-solid fa-shield-halved text-xl"></i>
+                <div class="rounded-2xl bg-slate-800/90 p-8 border border-slate-700 shadow-xl hover:border-blue-500 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
+                        <i class="fa-solid fa-shield-halved text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Credenciado & Confiável</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Motorista devidamente regulamentado e credenciado para atuar no Aeroporto de Confins (CNF), garantindo embarque seguro e dentro de todas as normas legais.
+                    <h3 class="text-2xl font-bold text-white mb-3">Credenciado & Confiável</h3>
+                    <p class="text-gray-200 text-sm leading-relaxed">
+                        Motorista devidamente regulamentado e credenciado na praça do Aeroporto de Confins (CNF), garantindo transporte 100% legalizado, seguro e autorizado.
                     </p>
                 </div>
+                
                 <!-- Card 2 -->
-                <div class="rounded-2xl glass p-8 border border-gray-800 hover:border-accent/50 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-accent mb-6 group-hover:bg-accent group-hover:text-white transition-all">
-                        <i class="fa-solid fa-clock text-xl"></i>
+                <div class="rounded-2xl bg-slate-800/90 p-8 border border-slate-700 shadow-xl hover:border-blue-500 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
+                        <i class="fa-solid fa-clock text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Pontualidade Britânica</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Monitoro o seu voo em tempo real. Se o voo atrasar ou adiantar, estarei te esperando no desembarque sem custos adicionais de espera.
+                    <h3 class="text-2xl font-bold text-white mb-3">Pontualidade Britânica</h3>
+                    <p class="text-gray-200 text-sm leading-relaxed">
+                        Monitoramento contínuo do horário dos voos. Caso o seu voo antecipe ou atrase, estarei pronto no terminal sem sobrotaxas extras de espera.
                     </p>
                 </div>
+                
                 <!-- Card 3 -->
-                <div class="rounded-2xl glass p-8 border border-gray-800 hover:border-accent/50 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-accent mb-6 group-hover:bg-accent group-hover:text-white transition-all">
-                        <i class="fa-solid fa-car-side text-xl"></i>
+                <div class="rounded-2xl bg-slate-800/90 p-8 border border-slate-700 shadow-xl hover:border-blue-500 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
+                        <i class="fa-solid fa-car-side text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Conforto & Discrição</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Veículo confortável, limpo, higienizado e com amplo espaço para bagagens. Ideal tanto para viagens a negócios quanto para passeios em família.
+                    <h3 class="text-2xl font-bold text-white mb-3">Conforto & Discrição</h3>
+                    <p class="text-gray-200 text-sm leading-relaxed">
+                        Veículo confortável, limpo, higienizado e com amplo porta-malas. Atendimento cortês e silencioso para sua maior comodidade.
                     </p>
                 </div>
             </div>
@@ -179,12 +263,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-4">Serviços Especializados</h2>
-                <p class="text-gray-400">Atendimento sob medida para suas necessidades de transporte.</p>
+                <p class="text-gray-400">Atendimento sob medida para passageiros exigentes e corporativos.</p>
             </div>
 
             <div class="grid lg:grid-cols-3 gap-8">
                 <!-- Serviço 1 -->
-                <div class="rounded-2xl bg-cardBg border border-gray-800 p-8 flex flex-col justify-between">
+                <div class="rounded-2xl bg-cardBg border border-gray-800 p-8 flex flex-col justify-between hover:border-gray-700 transition-all">
                     <div>
                         <div class="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-accent mb-6">
                             <i class="fa-solid fa-plane-departure text-2xl"></i>
@@ -194,46 +278,46 @@
                             Viagens diretas entre o Aeroporto Internacional de Confins e qualquer bairro de Belo Horizonte, hotéis ou municípios da Região Metropolitana.
                         </p>
                     </div>
-                    <ul class="space-y-2 text-sm text-gray-300 border-t border-gray-800 pt-4">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Recepção com placa no desembarque</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Ajuda com malas e bagagens</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Rotas otimizadas sem trânsito desnecessário</li>
+                    <ul class="space-y-3 text-sm text-gray-300 border-t border-gray-800/80 pt-4">
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-accent"></i> Recepção com placa no desembarque</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-accent"></i> Auxílio total com bagagens</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-accent"></i> Rotas inteligentes e seguras</li>
                     </ul>
                 </div>
 
                 <!-- Serviço 2 -->
-                <div class="rounded-2xl bg-cardBg border border-gray-800 p-8 flex flex-col justify-between">
+                <div class="rounded-2xl bg-cardBg border border-gray-800 p-8 flex flex-col justify-between hover:border-gray-700 transition-all">
                     <div>
                         <div class="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-accent mb-6">
                             <i class="fa-solid fa-briefcase text-2xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-4">Viagens Corporativas</h3>
                         <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                            Atendimento voltado para executivos, empresas, reuniões de negócios, feiras e eventos em MG. Emissão de recibos e faturamento facilitado.
+                            Atendimento executivo para empresas, reuniões, congressos e eventos. Emissão de recibo e faturamento facilitado.
                         </p>
                     </div>
-                    <ul class="space-y-2 text-sm text-gray-300 border-t border-gray-800 pt-4">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Faturamento para empresas</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Discrição e profissionalismo</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Disponibilidade por hora (diárias)</li>
+                    <ul class="space-y-3 text-sm text-gray-300 border-t border-gray-800/80 pt-4">
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-accent"></i> Faturamento corporativo</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-accent"></i> Sigilo e alto padrão</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-accent"></i> Diárias e disposição por hora</li>
                     </ul>
                 </div>
 
                 <!-- Serviço 3 -->
-                <div class="rounded-2xl bg-cardBg border border-gray-800 p-8 flex flex-col justify-between">
+                <div class="rounded-2xl bg-cardBg border border-gray-800 p-8 flex flex-col justify-between hover:border-gray-700 transition-all">
                     <div>
                         <div class="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-accent mb-6">
                             <i class="fa-solid fa-map-location-dot text-2xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-4">Viagens Intermunicipais</h3>
                         <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                            Vai para cidades históricas (Ouro Preto, Tiradentes), Inhotim (Brumadinho) ou interior de Minas? Viagens longas com total segurança e comodidade.
+                            Destinos como Ouro Preto, Tiradentes, Inhotim (Brumadinho), Juiz de Fora, Montes Claros e todo o interior de MG.
                         </p>
                     </div>
-                    <ul class="space-y-2 text-sm text-gray-300 border-t border-gray-800 pt-4">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Destinos turísticos de MG</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Preço fechado e transparente</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Paradas programadas se necessário</li>
+                    <ul class="space-y-3 text-sm text-gray-300 border-t border-gray-800/80 pt-4">
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-accent"></i> Cidades históricas e turismo</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-accent"></i> Tarifas fixas e transparentes</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-accent"></i> Paradas programadas a seu critério</li>
                     </ul>
                 </div>
             </div>
@@ -246,232 +330,657 @@
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="space-y-6">
                     <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-500/10 text-accent border border-blue-500/20">
-                        <i class="fa-solid fa-user-tie"></i> Experiência Comprovada
+                        <i class="fa-solid fa-id-card"></i> Tradição & Confiabilidade
                     </span>
                     <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                        Mais de 20 Anos Conduzindo com Excelência em Minas Gerais
+                        Mais de 20 Anos de Experiência no Transporte de Passageiros em CNF
                     </h2>
-                    <p class="text-gray-400 leading-relaxed">
-                        Meu compromisso é com a sua segurança e bem-estar do momento em que você desembarca em Confins até o seu destino final. São mais de duas décadas prestando serviços de táxi de alta qualidade, conhecendo cada atalho, rodovia e endereço de Belo Horizonte e região.
+                    <p class="text-gray-300 leading-relaxed">
+                        Como motorista de táxi credenciado no Aeroporto Internacional Tancredo Neves (Confins), meu objetivo diário é proporcionar uma viagem tranquila, segura e rigorosamente pontual.
                     </p>
-                    <p class="text-gray-400 leading-relaxed">
-                        Trabalho com foco total em pontualidade, honestidade e atendimento humanizado. Seja para receber sua família ou transportar clientes importantes da sua empresa, você pode contar com um serviço de primeira linha.
+                    <p class="text-gray-300 leading-relaxed">
+                        Conheço detalhadamente todas as vias de tráfego de Belo Horizonte, Grande BH e principais rodovias mineiras, garantindo o melhor trajeto para que você nunca perca seu voo ou compromisso.
                     </p>
-                    <div class="flex items-center gap-6 pt-2">
-                        <div>
-                            <p class="text-3xl font-extrabold text-white">20+</p>
-                            <p class="text-xs text-gray-400">Anos de Estrada</p>
+                    <div class="flex items-center gap-6 pt-4 border-t border-gray-800">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-3xl text-green-500"></i>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase font-semibold">Contato Direto</p>
+                                <a href="https://wa.me/5531984280227" target="_blank" rel="noopener noreferrer" class="text-lg font-bold text-white hover:text-green-400 transition-colors">(31) 98428-0227</a>
+                            </div>
                         </div>
-                        <div class="border-l border-gray-800 pl-6">
-                            <p class="text-3xl font-extrabold text-white">Milhares</p>
-                            <p class="text-xs text-gray-400">De Corridas Bem-Sucedidas</p>
+                        <div class="flex items-center gap-3 border-l border-gray-800 pl-6">
+                            <i class="fa-brands fa-instagram text-3xl text-pink-500"></i>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase font-semibold">Siga no Instagram</p>
+                                <a href="https://www.instagram.com/mitertaxi" target="_blank" rel="noopener noreferrer" class="text-lg font-bold text-white hover:text-pink-400 transition-colors">@mitertaxi</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="rounded-2xl glass p-8 border border-gray-800 space-y-6">
-                    <h3 class="text-xl font-bold text-white border-b border-gray-800 pb-4">Compromisso com o Passageiro</h3>
+                    <h3 class="text-xl font-bold text-white border-b border-gray-800 pb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check text-accent"></i> Garantias Miter Táxi
+                    </h3>
                     <ul class="space-y-4 text-sm text-gray-300">
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-accent text-lg mt-0.5"></i>
-                            <span><strong>Monitoramento de voo:</strong> Acompanhamento em tempo real para evitar qualquer desencontro no aeroporto.</span>
+                            <i class="fa-solid fa-plane text-accent text-base mt-1"></i>
+                            <span><strong>Rastreamento de Voo em Tempo Real:</strong> Seu táxi estará a postos mesmo se a aeronave adiantar ou atrasar.</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-accent text-lg mt-0.5"></i>
-                            <span><strong>Formas de pagamento facilitadas:</strong> Pix, cartões de crédito/débito e faturamento corporativo.</span>
+                            <i class="fa-solid fa-credit-card text-accent text-base mt-1"></i>
+                            <span><strong>Pagamentos Versáteis:</strong> Aceito Pix, cartões de débito e crédito diretamente na maquininha do veículo.</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-accent text-lg mt-0.5"></i>
-                            <span><strong>Atendimento bilíngue / básico para turistas:</strong> Acolhimento especial para passageiros estrangeiros desembarcando em CNF.</span>
+                            <i class="fa-solid fa-clipboard-check text-accent text-base mt-1"></i>
+                            <span><strong>Credenciamento Oficial:</strong> Veículo fiscalizado e habilitado para atuar no Aeroporto de Confins.</span>
                         </li>
                     </ul>
+                    <div class="pt-2">
+                        <button onclick="openModal('modal-autenticidade')" class="w-full py-3 px-4 rounded-xl bg-gray-800/90 hover:bg-gray-700 text-xs font-semibold text-gray-200 border border-gray-700 flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-solid fa-certificate text-gold"></i> Ver Termos de Autenticidade & Licença
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Simulador / Orçamento Rápido -->
+    <!-- Simulador / Orçamento Rápido (Fully Editable & Clearable) -->
     <section id="simulador" class="py-20 bg-cardBg/40 border-t border-gray-800/40">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-4">Simule sua Corrida</h2>
-                <p class="text-gray-400">Preencha os dados abaixo e envie diretamente para o WhatsApp do motorista para confirmar disponibilidade e valor.</p>
+                <span class="text-green-400 font-semibold text-xs tracking-widest uppercase">Orçamento Sem Compromisso</span>
+                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-2 mb-4">Simulador de Corrida</h2>
+                <p class="text-gray-400">Preencha ou edite os dados da sua viagem abaixo. Você pode modificar ou limpar as informações a qualquer momento antes de enviar para o WhatsApp.</p>
             </div>
 
-            <div class="rounded-2xl bg-cardBg border border-gray-800 p-8 shadow-xl space-y-8">
-                <!-- Passo 1: Tipo de Rota -->
+            <form id="form-simulador" onsubmit="enviarSimulacaoWhatsApp(event)" class="rounded-2xl bg-cardBg border border-gray-800 p-6 sm:p-10 shadow-2xl space-y-6">
+                
+                <!-- Sentido da Rota -->
                 <div>
-                    <label class="block text-sm font-semibold text-gray-200 mb-3">1. Qual é o sentido da viagem?</label>
+                    <label class="block text-sm font-semibold text-gray-200 mb-3">1. Sentido da Viagem:</label>
                     <div class="grid sm:grid-cols-2 gap-4">
-                        <button type="button" onclick="setRota('Aeroporto de Confins (CNF) ➔ Belo Horizonte', this)" class="rota-btn p-4 rounded-xl border border-blue-500 bg-blue-500/10 text-white font-medium text-left transition-all flex items-center justify-between">
-                            <span>Confins ➔ Belo Horizonte</span>
-                            <i class="fa-solid fa-circle-check text-accent"></i>
+                        <button type="button" id="btn-rota-1" onclick="setSentidoRota('Confins (CNF) ➔ Belo Horizonte / Região')" class="p-4 rounded-xl border border-blue-500 bg-blue-500/10 text-white font-medium text-left transition-all flex items-center justify-between">
+                            <span>Confins (CNF) ➔ BH / Região</span>
+                            <i id="icon-rota-1" class="fa-solid fa-circle-check text-accent"></i>
                         </button>
-                        <button type="button" onclick="setRota('Belo Horizonte ➔ Aeroporto de Confins (CNF)', this)" class="rota-btn p-4 rounded-xl border border-gray-700 bg-darkBg text-gray-300 font-medium text-left transition-all flex items-center justify-between">
-                            <span>Belo Horizonte ➔ Confins</span>
-                            <i class="fa-solid fa-circle text-gray-700"></i>
+                        <button type="button" id="btn-rota-2" onclick="setSentidoRota('Belo Horizonte / Região ➔ Confins (CNF)')" class="p-4 rounded-xl border border-gray-700 bg-darkBg text-gray-300 font-medium text-left transition-all flex items-center justify-between">
+                            <span>BH / Região ➔ Confins (CNF)</span>
+                            <i id="icon-rota-2" class="fa-solid fa-circle text-gray-600"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Passo 2: Destino / Bairro ou Região -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-200 mb-3">2. Região / Bairro de Destino ou Partida em BH:</label>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                        <button type="button" onclick="setRegiao('Região Centro-Sul (Savassi, Lourdes, Centro)', this)" class="reg-btn p-3 rounded-xl border border-blue-500 bg-blue-500/10 text-white font-medium text-center transition-all text-xs">Centro-Sul / Savassi</button>
-                        <button type="button" onclick="setRegiao('Região da Pampulha / Castelo', this)" class="reg-btn p-3 rounded-xl border border-gray-700 bg-darkBg text-gray-300 font-medium text-center transition-all text-xs">Pampulha / Castelo</button>
-                        <button type="button" onclick="setRegiao('Zona Sul / Belvedere / Nova Lima', this)" class="reg-btn p-3 rounded-xl border border-gray-700 bg-darkBg text-gray-300 font-medium text-center transition-all text-xs">Belvedere / Nova Lima</button>
-                        <button type="button" onclick="setRegiao('Outra Cidade / Outro Bairro', this)" class="reg-btn p-3 rounded-xl border border-gray-700 bg-darkBg text-gray-300 font-medium text-center transition-all text-xs">Outro Destino</button>
-                    </div>
-                </div>
-
-                <!-- Passo 3: Adicionais -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-200 mb-3">3. Necessidades Especiais:</label>
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <label class="flex items-center gap-3 p-4 rounded-xl border border-gray-700 bg-darkBg cursor-pointer hover:border-gray-600 transition-all">
-                            <input type="checkbox" id="chk-placa" class="w-4 h-4 rounded text-accent focus:ring-accent bg-gray-900 border-gray-700">
-                            <span class="text-sm font-medium text-gray-200">Recepção com placa no desembarque</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-4 rounded-xl border border-gray-700 bg-darkBg cursor-pointer hover:border-gray-600 transition-all">
-                            <input type="checkbox" id="chk-retorno" class="w-4 h-4 rounded text-accent focus:ring-accent bg-gray-900 border-gray-700">
-                            <span class="text-sm font-medium text-gray-200">Viagem de Ida e Volta (Agendada)</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Envio -->
-                <div class="pt-6 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <!-- Origem e Destino Editáveis -->
+                <div class="grid sm:grid-cols-2 gap-6">
                     <div>
-                        <p class="text-xs text-gray-400">Atendimento rápido e direto com o motorista:</p>
-                        <p class="text-lg font-bold text-white">Orçamento sem compromisso via WhatsApp</p>
+                        <label for="input-origem" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Origem Exata:</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <input type="text" id="input-origem" value="Aeroporto Internacional de Confins (CNF)" placeholder="Ex: Aeroporto CNF ou Endereço em BH" required class="w-full pl-10 pr-4 py-3 rounded-xl bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-accent transition-colors">
+                        </div>
                     </div>
-                    <button onclick="enviarWhatsApp()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-green-600 hover:bg-green-700 text-white font-semibold transition-all shadow-xl shadow-green-600/20">
-                        <i class="fa-brands fa-whatsapp text-xl"></i> Solicitar Orçamento via WhatsApp
+
+                    <div>
+                        <label for="input-destino" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Destino Exato:</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
+                                <i class="fa-solid fa-flag-checkered"></i>
+                            </span>
+                            <input type="text" id="input-destino" value="Bairro Savassi, Belo Horizonte - MG" placeholder="Ex: Bairro, Hotel ou Cidade" required class="w-full pl-10 pr-4 py-3 rounded-xl bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-accent transition-colors">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data, Horário, Passageiros, Bagagens -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div>
+                        <label for="input-data" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Data:</label>
+                        <input type="date" id="input-data" class="w-full px-3 py-3 rounded-xl bg-darkBg border border-gray-700 text-white text-sm focus:outline-none focus:border-accent">
+                    </div>
+                    <div>
+                        <label for="input-hora" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Horário / Voo:</label>
+                        <input type="text" id="input-hora" placeholder="Ex: 14:30 (Voo AD4520)" class="w-full px-3 py-3 rounded-xl bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-accent">
+                    </div>
+                    <div>
+                        <label for="input-passageiros" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Passageiros:</label>
+                        <select id="input-passageiros" class="w-full px-3 py-3 rounded-xl bg-darkBg border border-gray-700 text-white text-sm focus:outline-none focus:border-accent">
+                            <option value="1 Pessoa">1 Passageiro</option>
+                            <option value="2 Pessoas" selected>2 Passageiros</option>
+                            <option value="3 Pessoas">3 Passageiros</option>
+                            <option value="4 Pessoas">4 Passageiros</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="input-malas" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Malas Grandes:</label>
+                        <select id="input-malas" class="w-full px-3 py-3 rounded-xl bg-darkBg border border-gray-700 text-white text-sm focus:outline-none focus:border-accent">
+                            <option value="Sem malas grandes">Sem malas grandes</option>
+                            <option value="1 a 2 Malas" selected>1 a 2 Malas</option>
+                            <option value="3 a 4 Malas">3 a 4 Malas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Opcionais / Checkboxes -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-3">Necessidades Especiais:</label>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <label class="flex items-center gap-3 p-3.5 rounded-xl border border-gray-700 bg-darkBg cursor-pointer hover:border-gray-600 transition-all">
+                            <input type="checkbox" id="chk-placa" class="w-4 h-4 rounded text-accent focus:ring-accent bg-gray-900 border-gray-700">
+                            <span class="text-xs font-medium text-gray-200">Recepção com Placa no Desembarque</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 rounded-xl border border-gray-700 bg-darkBg cursor-pointer hover:border-gray-600 transition-all">
+                            <input type="checkbox" id="chk-retorno" class="w-4 h-4 rounded text-accent focus:ring-accent bg-gray-900 border-gray-700">
+                            <span class="text-xs font-medium text-gray-200">Agendar Corrida de Ida e Volta</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Mensagem Adicional / Observações -->
+                <div>
+                    <label for="input-obs" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Observações Adicionais (Opcional):</label>
+                    <textarea id="input-obs" rows="2" placeholder="Ex: Transportarei cadeirinha infantil, animal de estimação em caixa, etc." class="w-full p-3 rounded-xl bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-accent"></textarea>
+                </div>
+
+                <!-- Actions: Clear Form & Submit -->
+                <div class="pt-4 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <button type="button" onclick="limparSimulador()" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm font-medium transition-all flex items-center justify-center gap-2 border border-gray-700">
+                        <i class="fa-solid fa-rotate-left"></i> Limpar / Redefinir
+                    </button>
+
+                    <button type="submit" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-green-600 hover:bg-green-700 text-white font-semibold transition-all shadow-xl shadow-green-600/30 flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Enviar Orçamento para (31) 98428-0227
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
 
-    <!-- FAQ / Dúvidas Frequentes -->
-    <section id="faq" class="py-20 bg-darkBg border-t border-gray-800/40">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-4">Dúvidas Frequentes</h2>
-                <p class="text-gray-400">Respostas rápidas sobre traslados e atendimento no Aeroporto de Confins.</p>
+    <!-- Atendimento Virtual / Assistente de Dúvidas de Táxi (Interactive Virtual Support Chatbot) -->
+    <section id="atendimento-virtual" class="py-20 bg-darkBg border-t border-gray-800/40">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-accent font-semibold text-xs tracking-widest uppercase">Suporte 24/7 Automatizado</span>
+                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-2 mb-4">Atendimento Virtual ao Passageiro</h2>
+                <p class="text-gray-400">Tire suas dúvidas instantaneamente sobre o agendamento de táxi executivo em Confins ou converse com nosso assistente virtual.</p>
             </div>
 
-            <div class="space-y-4">
-                <!-- FAQ 1 -->
-                <div class="rounded-xl glass border border-gray-800 overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left font-semibold text-white flex justify-between items-center focus:outline-none">
-                        <span>Onde encontro o motorista ao desembarcar no Aeroporto de Confins (CNF)?</span>
-                        <i class="fa-solid fa-chevron-down text-accent transition-transform"></i>
-                    </button>
-                    <div class="hidden px-6 pb-6 text-sm text-gray-400 leading-relaxed">
-                        Combinamos o ponto de encontro exato no saguão de desembarque de acordo com a sua preferência. Caso solicite a recepção com placa, estarei aguardando na saída do desembarque com seu nome ou o logo da sua empresa visível.
+            <!-- Virtual Assistant Widget -->
+            <div class="rounded-2xl glass border border-gray-800 overflow-hidden shadow-2xl grid lg:grid-cols-12">
+                
+                <!-- Left Options Menu -->
+                <div class="lg:col-span-4 bg-cardBg/90 p-5 border-r border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 pb-4 border-b border-gray-800 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-accent">
+                                <i class="fa-solid fa-robot text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-sm">Assistente Miter Táxi</h3>
+                                <p class="text-[11px] text-green-400 flex items-center gap-1">
+                                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Online Agora
+                                </p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Tópicos Frequentes:</p>
+                        <div class="space-y-2">
+                            <button onclick="perguntarAssistente('valores')" class="w-full p-2.5 rounded-xl bg-darkBg/70 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
+                                <span><i class="fa-solid fa-calculator text-accent mr-2"></i> Tarifas & Valores</span>
+                                <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
+                            </button>
+                            <button onclick="perguntarAssistente('madrugada')" class="w-full p-2.5 rounded-xl bg-darkBg/70 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
+                                <span><i class="fa-solid fa-moon text-amber-400 mr-2"></i> Voos na Madrugada</span>
+                                <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
+                            </button>
+                            <button onclick="perguntarAssistente('atraso')" class="w-full p-2.5 rounded-xl bg-darkBg/70 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
+                                <span><i class="fa-solid fa-plane-slash text-red-400 mr-2"></i> E se o voo atrasar?</span>
+                                <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
+                            </button>
+                            <button onclick="perguntarAssistente('pagamento')" class="w-full p-2.5 rounded-xl bg-darkBg/70 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
+                                <span><i class="fa-solid fa-credit-card text-green-400 mr-2"></i> Formas de Pagamento</span>
+                                <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
+                            </button>
+                            <button onclick="perguntarAssistente('bagagens')" class="w-full p-2.5 rounded-xl bg-darkBg/70 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
+                                <span><i class="fa-solid fa-suitcase text-indigo-400 mr-2"></i> Limite de Bagagens</span>
+                                <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
+                            </button>
+                            <button onclick="perguntarAssistente('pets')" class="w-full p-2.5 rounded-xl bg-darkBg/70 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
+                                <span><i class="fa-solid fa-dog text-pink-400 mr-2"></i> Transporte de Pets</span>
+                                <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-gray-800">
+                        <a href="https://wa.me/5531984280227?text=Olá!%20Quero%20falar%20diretamente%20com%20o%20motorista." target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 rounded-xl bg-green-600 hover:bg-green-700 text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Falar Direto no WhatsApp
+                        </a>
                     </div>
                 </div>
-                <!-- FAQ 2 -->
-                <div class="rounded-xl glass border border-gray-800 overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left font-semibold text-white flex justify-between items-center focus:outline-none">
-                        <span>E se o meu voo atrasar? Vou pagar taxa de espera?</span>
-                        <i class="fa-solid fa-chevron-down text-accent transition-transform"></i>
-                    </button>
-                    <div class="hidden px-6 pb-6 text-sm text-gray-400 leading-relaxed">
-                        Não! Eu monitoro o número do seu voo em tempo real. Se houver atrasos na chegada, estarei lá no momento em que você pousar, sem cobrança extra de espera.
+
+                <!-- Right Chat Screen -->
+                <div class="lg:col-span-8 bg-darkBg/95 flex flex-col h-[480px]">
+                    
+                    <!-- Chat Header -->
+                    <div class="p-4 border-b border-gray-800 bg-cardBg/40 flex items-center justify-between">
+                        <div class="flex items-center gap-2 text-xs text-gray-300">
+                            <i class="fa-solid fa-comments text-accent"></i>
+                            <span>Chat de Dúvidas Frequentes & Agendamento</span>
+                        </div>
+                        <button onclick="reiniciarChat()" class="text-[11px] text-gray-400 hover:text-white transition-colors flex items-center gap-1">
+                            <i class="fa-solid fa-arrows-rotate"></i> Reiniciar Conversa
+                        </button>
                     </div>
-                </div>
-                <!-- FAQ 3 -->
-                <div class="rounded-xl glass border border-gray-800 overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left font-semibold text-white flex justify-between items-center focus:outline-none">
-                        <span>Como posso realizar o pagamento da corrida?</span>
-                        <i class="fa-solid fa-chevron-down text-accent transition-transform"></i>
-                    </button>
-                    <div class="hidden px-6 pb-6 text-sm text-gray-400 leading-relaxed">
-                        Aceito diversas formas de pagamento para sua comodidade: Pix, cartões de crédito e débito (com maquininha no veículo) ou faturamento para contas corporativas cadastradas antecipadamente.
+
+                    <!-- Messages Window -->
+                    <div id="chat-messages" class="chat-scroll flex-1 p-4 overflow-y-auto space-y-4">
+                        
+                        <!-- Initial Bot Message -->
+                        <div class="flex items-start gap-3 max-w-[85%]">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs shrink-0 mt-1">
+                                <i class="fa-solid fa-taxi"></i>
+                            </div>
+                            <div class="bg-cardBg border border-gray-800 rounded-2xl p-3.5 text-xs text-gray-200 leading-relaxed shadow-sm">
+                                Olá! Sou o assistente virtual da <strong>Miter Táxi Especial CNF</strong>. 🚕<br><br>
+                                Como posso te ajudar hoje? Selecione uma das opções ao lado ou digite sua dúvida no campo abaixo!
+                            </div>
+                        </div>
+
                     </div>
+
+                    <!-- Chat Input Bar -->
+                    <div class="p-3 border-t border-gray-800 bg-cardBg/60">
+                        <form onsubmit="enviarMensagemChat(event)" class="flex items-center gap-2">
+                            <input type="text" id="chat-input" placeholder="Digite sua pergunta (ex: preço, mala, agendamento)..." class="flex-1 bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-xs rounded-xl px-4 py-3 focus:outline-none focus:border-accent">
+                            <button type="submit" class="w-10 h-10 rounded-xl bg-accent hover:bg-accentHover text-white flex items-center justify-center transition-all shrink-0">
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                            </button>
+                        </form>
+                    </div>
+
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-cardBg/80 border-t border-gray-800 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-taxi text-xl text-accent"></i>
-                <span class="text-lg font-bold tracking-wider text-white">CONFNS<span class="text-accent">TAXI</span></span>
+    <footer class="bg-cardBg border-t border-gray-800 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-gray-800">
+                
+                <!-- Brand Info -->
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-taxi"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-wider text-white">MITER<span class="text-accent">TAXI</span></span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed max-w-md">
+                        Serviço de Táxi Especial e Traslados no Aeroporto Internacional de Confins (CNF). Atendimento 24h sob agendamento prévio com total pontualidade e segurança.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="https://wa.me/5531984280227" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-green-600/20 text-green-400 border border-green-500/30 flex items-center justify-center hover:bg-green-600 hover:text-white transition-all">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/mitertaxi" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-pink-600/20 text-pink-400 border border-pink-500/30 flex items-center justify-center hover:bg-pink-600 hover:text-white transition-all">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Navigation -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Navegação</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#diferenciais" class="hover:text-accent transition-colors">Diferenciais</a></li>
+                        <li><a href="#servicos" class="hover:text-accent transition-colors">Serviços Executivos</a></li>
+                        <li><a href="#sobre" class="hover:text-accent transition-colors">Sobre o Motorista</a></li>
+                        <li><a href="#simulador" class="hover:text-accent transition-colors">Simular Corrida</a></li>
+                        <li><a href="#atendimento-virtual" class="hover:text-accent transition-colors">Dúvidas Frequentes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal & Contact -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Legal & Contato</h4>
+                    <ul class="space-y-2 text-xs text-gray-400 mb-4">
+                        <li><button onclick="openModal('modal-privacidade')" class="hover:text-accent transition-colors text-left">Termos de Privacidade (LGPD)</button></li>
+                        <li><button onclick="openModal('modal-autenticidade')" class="hover:text-accent transition-colors text-left">Autenticidade & Licença CNF</button></li>
+                    </ul>
+                    <p class="text-xs text-gray-300 font-semibold">Contato Direto:</p>
+                    <p class="text-xs text-green-400 font-mono mt-0.5">(31) 98428-0227</p>
+                </div>
+
             </div>
-            <p class="text-sm text-gray-500 text-center">
-                &copy; 2026 Táxi Executivo Confins. Todos os direitos reservados. Motorista Credenciado CNF.
-            </p>
-            <div class="flex items-center gap-4 text-gray-400 text-lg">
-                <a href="https://wa.me/5531999999999" target="_blank" class="hover:text-accent transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="#" class="hover:text-accent transition-colors"><i class="fa-brands fa-instagram"></i></a>
+
+            <!-- Copyright -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+                <p>&copy; 2026 Miter Táxi CNF. Todos os direitos reservados. Motorista Credenciado no Aeroporto de Confins.</p>
+                <div class="flex items-center gap-4">
+                    <a href="https://www.instagram.com/mitertaxi" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300">@mitertaxi</a>
+                    <span>•</span>
+                    <a href="https://wa.me/5531984280227" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300">WhatsApp: 31 98428-0227</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript Interativo -->
+    <!-- MODAL 1: Termos de Privacidade (LGPD) -->
+    <div id="modal-privacidade" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="bg-cardBg border border-gray-700 rounded-2xl max-w-xl w-full p-6 space-y-4 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('modal-privacidade')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="flex items-center gap-3 border-b border-gray-800 pb-3">
+                <i class="fa-solid fa-user-shield text-accent text-2xl"></i>
+                <h3 class="text-lg font-bold text-white">Termos de Privacidade e Proteção de Dados (LGPD)</h3>
+            </div>
+
+            <div class="text-xs text-gray-300 space-y-3 leading-relaxed">
+                <p><strong>1. Coleta de Informações:</strong> As informações inseridas no simulador de corrida (como origem, destino, horário e número de contato) são utilizadas única e exclusivamente para a elaboração de orçamentos de transporte e alinhamento do serviço de táxi.</p>
+                <p><strong>2. Sigilo e Proteção:</strong> Respeitamos integralmente a Lei Geral de Proteção de Dados (Lei nº 13.709/2018). Seus dados pessoais não serão repassados, vendidos ou compartilhados com terceiros sob nenhuma hipótese.</p>
+                <p><strong>3. Comunicação via WhatsApp:</strong> Ao clicar no botão de solicitação de orçamento, a comunicação ocorrerá diretamente entre o passageiro e o motorista pelo aplicativo oficial do WhatsApp.</p>
+            </div>
+
+            <div class="pt-3 border-t border-gray-800 flex justify-end">
+                <button onclick="closeModal('modal-privacidade')" class="px-5 py-2.5 rounded-xl bg-accent text-white text-xs font-semibold hover:bg-accentHover transition-all">Entendi e Concordo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: Autenticidade e Licenciamento CNF -->
+    <div id="modal-autenticidade" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="bg-cardBg border border-gray-700 rounded-2xl max-w-xl w-full p-6 space-y-4 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('modal-autenticidade')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="flex items-center gap-3 border-b border-gray-800 pb-3">
+                <i class="fa-solid fa-certificate text-gold text-2xl"></i>
+                <h3 class="text-lg font-bold text-white">Termo de Autenticidade & Credenciamento CNF</h3>
+            </div>
+
+            <div class="text-xs text-gray-300 space-y-3 leading-relaxed">
+                <p><strong>1. Credenciamento Oficial:</strong> O serviço prestado por Miter Táxi é integralmente credenciado e regulamentado para operação de transporte individual de passageiros no Aeroporto Internacional de Confins - Tancredo Neves (CNF).</p>
+                <p><strong>2. Vistoria e Segurança:</strong> O veículo passa por vistorias periódicas obrigatórias pelos órgãos de trânsito competentes, estando equipado com seguro de passageiros e equipamentos de segurança em pleno funcionamento.</p>
+                <p><strong>3. Transparência Tarifária:</strong> Os valores combinados previamente possuem garantia de transparência, sem taxas ocultas ou cobranças indevidas ao desembarcar.</p>
+            </div>
+
+            <div class="pt-3 border-t border-gray-800 flex justify-end">
+                <button onclick="closeModal('modal-autenticidade')" class="px-5 py-2.5 rounded-xl bg-gold text-slate-950 font-bold text-xs hover:bg-amber-400 transition-all">Fechar Autenticidade</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
     <script>
-        // Menu Mobile Toggle
+        // 1. Mobile Menu Toggle
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Variáveis do Simulador
-        let selectedRota = 'Aeroporto de Confins (CNF) ➔ Belo Horizonte';
-        let selectedRegiao = 'Região Centro-Sul (Savassi, Lourdes, Centro)';
+        // 2. Photo Slideshow Carousel Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-item');
+        const dots = document.querySelectorAll('.slide-dot');
+        const totalSlides = slides.length;
+        let slideInterval;
 
-        function setRota(valor, btn) {
-            selectedRota = valor;
-            document.querySelectorAll('.rota-btn').forEach(b => {
-                b.classList.remove('border-blue-500', 'bg-blue-500/10', 'text-white');
-                b.classList.add('border-gray-700', 'bg-darkBg', 'text-gray-300');
-                b.querySelector('i').className = 'fa-solid fa-circle text-gray-700';
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.remove('opacity-0');
+                    slide.classList.add('opacity-100', 'z-10');
+                } else {
+                    slide.classList.remove('opacity-100', 'z-10');
+                    slide.classList.add('opacity-0');
+                }
             });
-            btn.classList.remove('border-gray-700', 'bg-darkBg', 'text-gray-300');
-            btn.classList.add('border-blue-500', 'bg-blue-500/10', 'text-white');
-            btn.querySelector('i').className = 'fa-solid fa-circle-check text-accent';
+
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.remove('bg-white/40');
+                    dot.classList.add('bg-blue-500', 'w-5');
+                } else {
+                    dot.classList.remove('bg-blue-500', 'w-5');
+                    dot.classList.add('bg-white/40', 'w-2.5');
+                }
+            });
+
+            currentSlide = index;
         }
 
-        function setRegiao(valor, btn) {
-            selectedRegiao = valor;
-            document.querySelectorAll('.reg-btn').forEach(b => {
-                b.classList.remove('border-blue-500', 'bg-blue-500/10', 'text-white');
-                b.classList.add('border-gray-700', 'bg-darkBg', 'text-gray-300');
-            });
-            btn.classList.remove('border-gray-700', 'bg-darkBg', 'text-gray-300');
-            btn.classList.add('border-blue-500', 'bg-blue-500/10', 'text-white');
+        function nextSlide() {
+            let next = (currentSlide + 1) % totalSlides;
+            showSlide(next);
         }
 
-        function enviarWhatsApp() {
+        function prevSlide() {
+            let prev = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(prev);
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            resetSlideTimer();
+        }
+
+        function resetSlideTimer() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 4500);
+        }
+
+        document.getElementById('next-slide').addEventListener('click', () => {
+            nextSlide();
+            resetSlideTimer();
+        });
+
+        document.getElementById('prev-slide').addEventListener('click', () => {
+            prevSlide();
+            resetSlideTimer();
+        });
+
+        // Start automatic slideshow timer
+        slideInterval = setInterval(nextSlide, 4500);
+
+        // 3. Simulator Form Logic & WhatsApp Submission
+        let sentidoRotaSelecionada = 'Confins (CNF) ➔ Belo Horizonte / Região';
+
+        function setSentidoRota(sentido) {
+            sentidoRotaSelecionada = sentido;
+            const btn1 = document.getElementById('btn-rota-1');
+            const btn2 = document.getElementById('btn-rota-2');
+            const icon1 = document.getElementById('icon-rota-1');
+            const icon2 = document.getElementById('icon-rota-2');
+
+            const origInput = document.getElementById('input-origem');
+            const destInput = document.getElementById('input-destino');
+
+            if (sentido.includes('Confins (CNF) ➔')) {
+                btn1.className = 'p-4 rounded-xl border border-blue-500 bg-blue-500/10 text-white font-medium text-left transition-all flex items-center justify-between';
+                btn2.className = 'p-4 rounded-xl border border-gray-700 bg-darkBg text-gray-300 font-medium text-left transition-all flex items-center justify-between';
+                icon1.className = 'fa-solid fa-circle-check text-accent';
+                icon2.className = 'fa-solid fa-circle text-gray-600';
+                
+                origInput.value = 'Aeroporto Internacional de Confins (CNF)';
+                destInput.value = 'Bairro Savassi, Belo Horizonte - MG';
+            } else {
+                btn2.className = 'p-4 rounded-xl border border-blue-500 bg-blue-500/10 text-white font-medium text-left transition-all flex items-center justify-between';
+                btn1.className = 'p-4 rounded-xl border border-gray-700 bg-darkBg text-gray-300 font-medium text-left transition-all flex items-center justify-between';
+                icon2.className = 'fa-solid fa-circle-check text-accent';
+                icon1.className = 'fa-solid fa-circle text-gray-600';
+
+                origInput.value = 'Belo Horizonte - MG';
+                destInput.value = 'Aeroporto Internacional de Confins (CNF)';
+            }
+        }
+
+        function limparSimulador() {
+            document.getElementById('form-simulador').reset();
+            setSentidoRota('Confins (CNF) ➔ Belo Horizonte / Região');
+            document.getElementById('input-origem').value = '';
+            document.getElementById('input-destino').value = '';
+        }
+
+        function enviarSimulacaoWhatsApp(event) {
+            event.preventDefault();
+
+            const origem = document.getElementById('input-origem').value.trim() || 'Não informada';
+            const destino = document.getElementById('input-destino').value.trim() || 'Não informado';
+            const data = document.getElementById('input-data').value || 'A combinar';
+            const hora = document.getElementById('input-hora').value.trim() || 'A combinar';
+            const passageiros = document.getElementById('input-passageiros').value;
+            const malas = document.getElementById('input-malas').value;
             const placa = document.getElementById('chk-placa').checked ? 'Sim' : 'Não';
-            const retorno = document.getElementById('chk-retorno').checked ? 'Sim' : 'Not';
+            const retorno = document.getElementById('chk-retorno').checked ? 'Sim' : 'Não';
+            const obs = document.getElementById('input-obs').value.trim() || 'Nenhuma';
 
-            const mensagem = `Olá! Gostaria de consultar orçamento/disponibilidade para táxi executivo:%0A` +
-                             `- Rota: ${selectedRota}%0A` +
-                             `- Região em BH: ${selectedRegiao}%0A` +
-                             `- Placa no Desembarque: ${placa}%0A` +
-                             `- Ida e Volta: ${retorno}`;
+            const mensagem = `Olá Miter Táxi! Gostaria de um orçamento de traslado:%0A` +
+                             `----------------------------%0A` +
+                             `🚕 *Sentido:* ${sentidoRotaSelecionada}%0A` +
+                             `📍 *Origem:* ${origem}%0A` +
+                             `🏁 *Destino:* ${destino}%0A` +
+                             `📅 *Data:* ${data}%0A` +
+                             `⏰ *Horário/Voo:* ${hora}%0A` +
+                             `👥 *Passageiros:* ${passageiros}%0A` +
+                             `🧳 *Bagagens:* ${malas}%0A` +
+                             `🪧 *Placa Desembarque:* ${placa}%0A` +
+                             `🔄 *Ida e Volta:* ${retorno}%0A` +
+                             `📝 *Obs:* ${obs}`;
 
-            // ATENÇÃO: Substitua '5531999999999' pelo seu número real do WhatsApp com DDI e DDD (Ex: 5531998887766)
-            const numeroWhatsApp = '5531999999999';
-            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, '_blank');
+            const phone = '5531984280227';
+            window.open(`https://wa.me/${phone}?text=${mensagem}`, '_blank');
         }
 
-        // Accordion FAQ
-        function toggleFaq(button) {
-            const content = button.nextElementSibling;
-            const icon = button.querySelector('i');
-            content.classList.toggle('hidden');
-            icon.classList.toggle('rotate-180');
+        // 4. Virtual Assistant Chatbot Logic
+        const botAnswers = {
+            valores: "💰 <strong>Tarifas e Orçamentos:</strong> Trabalhamos com valores fixos combinados com antecedência para sua tranquilidade, ou pelo valor do taxímetro oficial. Peça seu orçamento no simulador acima!",
+            madrugada: "🌙 <strong>Atendimento na Madrugada:</strong> Sim! Atendemos 24 horas por dia, 7 dias por semana sob agendamento prévio. Seu motorista estará no aeroporto no horário exato do seu voo.",
+            atraso: "✈️ <strong>Monitoramento de Voo:</strong> Rastreio o seu voo em tempo real. Se o pouso atrasar ou adiantar, estarei te aguardando no desembarque sem custo de espera!",
+            pagamento: "💳 <strong>Formas de Pagamento:</strong> Aceito Pix, cartões de crédito e débito na maquininha a bordo, dinheiro e faturamento para empresas parceiras.",
+            bagagens: "🧳 <strong>Capacidade de Bagagem:</strong> O veículo acomoda confortavelmente até 3 ou 4 malas grandes no porta-malas amplo. Caso precise de transporte especial, nos avise!",
+            pets: "🐾 <strong>Transporte de Animais:</strong> Aceitamos pets de pequeno e médio porte em caixas de transporte adequadas. Informe no agendamento para prepararmos o veículo."
+        };
+
+        function perguntarAssistente(chave) {
+            if (botAnswers[chave]) {
+                const chatWin = document.getElementById('chat-messages');
+                
+                // Add system option user badge
+                const userBubble = document.createElement('div');
+                userBubble.className = 'flex items-start justify-end gap-3 max-w-[85%] ml-auto';
+                userBubble.innerHTML = `
+                    <div class="bg-blue-600 text-white rounded-2xl p-3 text-xs leading-relaxed shadow-sm">
+                        Consulta rápida: ${chave.toUpperCase()}
+                    </div>
+                `;
+                chatWin.appendChild(userBubble);
+
+                // Add bot answer
+                setTimeout(() => {
+                    const botBubble = document.createElement('div');
+                    botBubble.className = 'flex items-start gap-3 max-w-[85%]';
+                    botBubble.innerHTML = `
+                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs shrink-0 mt-1">
+                            <i class="fa-solid fa-taxi"></i>
+                        </div>
+                        <div class="bg-cardBg border border-gray-800 rounded-2xl p-3.5 text-xs text-gray-200 leading-relaxed shadow-sm">
+                            ${botAnswers[chave]}
+                        </div>
+                    `;
+                    chatWin.appendChild(botBubble);
+                    chatWin.scrollTop = chatWin.scrollHeight;
+                }, 300);
+            }
+        }
+
+        function enviarMensagemChat(e) {
+            e.preventDefault();
+            const input = document.getElementById('chat-input');
+            const texto = input.value.trim();
+            if (!texto) return;
+
+            const chatWin = document.getElementById('chat-messages');
+
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'flex items-start justify-end gap-3 max-w-[85%] ml-auto';
+            userMsg.innerHTML = `
+                <div class="bg-blue-600 text-white rounded-2xl p-3 text-xs leading-relaxed shadow-sm">
+                    ${texto}
+                </div>
+            `;
+            chatWin.appendChild(userMsg);
+            input.value = '';
+            chatWin.scrollTop = chatWin.scrollHeight;
+
+            // Generate bot response
+            setTimeout(() => {
+                let resposta = "Entendi sua pergunta! Para agendamentos imediatos ou detalhes personalizados sobre '" + texto + "', você pode enviar uma mensagem direta para o meu WhatsApp <strong>(31) 98428-0227</strong>.";
+                
+                const txtLower = texto.toLowerCase();
+                if (txtLower.includes('preço') || txtLower.includes('valor') || txtLower.includes('quanto')) {
+                    resposta = botAnswers.valores;
+                } else if (txtLower.includes('madrugada') || txtLower.includes('noite') || txtLower.includes('horario')) {
+                    resposta = botAnswers.madrugada;
+                } else if (txtLower.includes('atraso') || txtLower.includes('atrasar') || txtLower.includes('voo')) {
+                    resposta = botAnswers.atraso;
+                } else if (txtLower.includes('cartao') || txtLower.includes('pix') || txtLower.includes('pagar')) {
+                    resposta = botAnswers.pagamento;
+                } else if (txtLower.includes('mala') || txtLower.includes('bagagem')) {
+                    resposta = botAnswers.bagagens;
+                } else if (txtLower.includes('pet') || txtLower.includes('cachorro') || txtLower.includes('gato')) {
+                    resposta = botAnswers.pets;
+                }
+
+                const botMsg = document.createElement('div');
+                botMsg.className = 'flex items-start gap-3 max-w-[85%]';
+                botMsg.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs shrink-0 mt-1">
+                        <i class="fa-solid fa-taxi"></i>
+                    </div>
+                    <div class="bg-cardBg border border-gray-800 rounded-2xl p-3.5 text-xs text-gray-200 leading-relaxed shadow-sm">
+                        ${resposta}
+                    </div>
+                `;
+                chatWin.appendChild(botMsg);
+                chatWin.scrollTop = chatWin.scrollHeight;
+            }, 500);
+        }
+
+        function reiniciarChat() {
+            const chatWin = document.getElementById('chat-messages');
+            chatWin.innerHTML = `
+                <div class="flex items-start gap-3 max-w-[85%]">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs shrink-0 mt-1">
+                        <i class="fa-solid fa-taxi"></i>
+                    </div>
+                    <div class="bg-cardBg border border-gray-800 rounded-2xl p-3.5 text-xs text-gray-200 leading-relaxed shadow-sm">
+                        Conversa reiniciada! Como posso te ajudar com seu táxi para Confins? 🚕
+                    </div>
+                </div>
+            `;
+        }
+
+        // 5. Modal Controllers
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
         }
     </script>
 </body>
 </html>
-
- 
+```
