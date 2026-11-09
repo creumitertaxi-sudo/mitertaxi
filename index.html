@@ -609,8 +609,9 @@
 
                         <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Atalhos Práticos (Clique):</p>
                         <div class="space-y-2">
+                            <!-- Botão renomeado: Removido "Cumprimento / Início" -->
                             <button onclick="perguntarAssistente('ola')" class="w-full p-2.5 rounded-xl bg-darkBg hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
-                                <span><i class="fa-solid fa-handshake text-accent mr-2"></i> Cumprimento / Início</span>
+                                <span><i class="fa-solid fa-handshake text-accent mr-2"></i> Apresentação Oficial</span>
                                 <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
                             </button>
                             <button onclick="perguntarAssistente('valores')" class="w-full p-2.5 rounded-xl bg-darkBg hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
@@ -659,7 +660,7 @@
                     </div>
 
                     <div id="chat-messages" class="chat-scroll flex-1 p-4 overflow-y-auto space-y-4">
-                        <!-- Mensagem inicial gerada dinamicamente pelo horário -->
+                        <!-- Mensagem inicial gerada pelo System Prompt -->
                     </div>
 
                     <div class="p-3 border-t border-gray-800 bg-cardBg/60">
@@ -1013,6 +1014,21 @@
         const tabelaContainerWrapper = document.getElementById('tabelaContainerWrapper');
         const initialStatePrompt = document.getElementById('initialStatePrompt');
 
+        // ==========================================
+        // SYSTEM PROMPT DO ASSISTENTE VIRTUAL
+        // ==========================================
+        const miterSystemPrompt = {
+            role: "system",
+            botName: "Miter Assistente Virtual.CNF",
+            objective: "Atender passageiros do Aeroporto Internacional de Confins (CNF) prestando informações precisas, amigáveis e profissionais sobre traslados de táxi executivo.",
+            guidelines: [
+                "Utilize saudações automáticas com base no horário do sistema (Bom dia, Boa tarde, Boa noite).",
+                "Consulte sempre a base oficial de preços baseada na Portaria Nº 5.884/2026 ao receber o nome de um destino.",
+                "Se o destino for encontrado, exiba o nome, a categoria e o valor exato formatado em Reais, acompanhado de um botão direto para agendamento via WhatsApp.",
+                "Mantenha um tom cortês, prestativo, seguro e institucional de motorista credenciado."
+            ]
+        };
+
         function normalizeText(text) {
             return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
         }
@@ -1203,7 +1219,6 @@
             renderTable();
         });
 
-        // Saudação dinâmica baseada no horário do dia (Bom dia, Boa tarde, Boa noite)
         function obterSaudacao() {
             const hora = new Date().getHours();
             if (hora >= 5 && hora < 12) {
@@ -1216,7 +1231,7 @@
         }
 
         const botAnswers = {
-            ola: `${obterSaudacao()} Seja muito bem-vindo(a) à <strong>Miter Táxi Especial CNF</strong>. 🚕<br><br>Em que posso te ajudar hoje? Digite o seu destino para consultar o valor oficial ou escolha um dos atalhos ao lado.`,
+            ola: `${obterSaudacao()} Seja muito bem-vindo(a) à <strong>${miterSystemPrompt.botName}</strong>. 🚕<br><br>Em que posso te ajudar hoje? Digite o seu destino para consultar o valor oficial ou escolha um dos atalhos ao lado.`,
             valores: "💰 <strong>Tarifas e Tabela Oficial:</strong> Nossos preços seguem rigorosamente a Portaria Nº 5.884/2026. Digite o nome do seu bairro ou cidade aqui no chat para eu consultar o valor exato para você!",
             madrugada: "🌙 <strong>Atendimento na Madrugada:</strong> Sim! Atendemos 24 horas por dia, 7 dias por semana sob agendamento prévio. Seu motorista estará no aeroporto no horário exato do seu voo.",
             atraso: "✈️ <strong>Monitoramento de Voo:</strong> Rastreio o seu voo em tempo real. Se o pouso atrasar ou adiantar, estarei te aguardando no desembarque sem custo de espera!",
