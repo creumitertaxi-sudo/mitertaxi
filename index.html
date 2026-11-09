@@ -387,7 +387,7 @@
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <span class="text-green-400 font-semibold text-xs tracking-widest uppercase">Orçamento Sem Compromisso</span>
                 <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-2 mb-4">Simulador de Corrida</h2>
-                <p class="text-gray-400">Preencha abaixo ou selecione um destino direto da <a href="#tabela-precos" class="text-accent underline font-semibold">Tabela Oficial</a> para preencher automaticamente. Envie direto para o WhatsApp <strong>(31) 98428-0227</strong>.</p>
+                <p class="text-gray-400">Preencha abaixo ou digite seu destino direto na <a href="#tabela-precos" class="text-accent underline font-semibold">Tabela Oficial</a> para preencher automaticamente. Envie direto para o WhatsApp <strong>(31) 98428-0227</strong>.</p>
             </div>
 
             <form id="form-simulador" onsubmit="enviarSimulacaoWhatsApp(event)" class="rounded-2xl bg-cardBg border border-gray-800 p-6 sm:p-10 shadow-2xl space-y-6">
@@ -504,7 +504,7 @@
             <div class="text-center max-w-3xl mx-auto mb-10">
                 <span class="text-amber-400 font-semibold text-xs tracking-widest uppercase">Portaria Nº 5.884 de 01/10/2026</span>
                 <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-2 mb-3">Tabela Oficial de Preços de Táxi</h2>
-                <p class="text-gray-400 text-sm">Pesquise seu destino abaixo. <strong class="text-white">Clique em qualquer card de destino</strong> para preencher automaticamente o simulador de orçamento acima!</p>
+                <p class="text-gray-400 text-sm">Digite o seu destino abaixo para consultar a tarifa oficial e preencher o orçamento automaticamente.</p>
             </div>
 
             <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-cardBg border border-gray-800 p-4 rounded-2xl mb-6 shadow-xl">
@@ -560,16 +560,28 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-between mb-4 px-1">
-                <div id="resultsCount" class="text-xs font-semibold text-gray-400 flex items-center gap-2">
-                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <span>Carregando tabela oficial...</span>
+            <!-- Tabela Oculta Inicialmente (só aparece após digitar ou filtrar) -->
+            <div id="tabelaContainerWrapper" class="hidden space-y-4">
+                <div class="flex items-center justify-between mb-2 px-1">
+                    <div id="resultsCount" class="text-xs font-semibold text-gray-400 flex items-center gap-2">
+                        <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+                        <span>0 destinos encontrados</span>
+                    </div>
+                    <div id="activeFilterBadge" class="hidden text-xs bg-amber-500/10 text-amber-400 font-medium px-2.5 py-1 rounded-full border border-amber-500/20"></div>
                 </div>
-                <div id="activeFilterBadge" class="hidden text-xs bg-amber-500/10 text-amber-400 font-medium px-2.5 py-1 rounded-full border border-amber-500/20"></div>
+
+                <div id="destinationsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                    <!-- Cards injetados via JavaScript -->
+                </div>
             </div>
 
-            <div id="destinationsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
-                <!-- Cards injetados via JavaScript -->
+            <!-- Estado Inicial: Nenhum termo digitado ainda -->
+            <div id="initialStatePrompt" class="flex flex-col items-center justify-center py-16 text-center bg-cardBg rounded-2xl border border-dashed border-gray-800 shadow-sm my-4">
+                <div class="w-16 h-16 bg-amber-500/10 rounded-full flex items-center justify-center text-amber-400 text-2xl mb-3 border border-amber-500/20">
+                    <i class="fa-solid fa-keyboard"></i>
+                </div>
+                <h3 class="text-white font-bold text-lg mb-1">Digite um endereço para ver os preços</h3>
+                <p class="text-gray-400 text-sm max-w-md px-4 mb-2">Escreva o bairro, cidade ou nome do local acima na barra de pesquisa para consultar os valores da tabela oficial instantaneamente.</p>
             </div>
 
             <div id="noResults" class="hidden flex-col items-center justify-center py-16 text-center bg-cardBg rounded-2xl border border-dashed border-gray-800 shadow-sm my-4">
@@ -663,7 +675,7 @@
                             </div>
                             <div class="bg-cardBg border border-gray-800 rounded-2xl p-3.5 text-xs text-gray-200 leading-relaxed shadow-sm">
                                 Olá! Sou o assistente virtual da <strong>Miter Táxi Especial CNF</strong>. 🚕<br><br>
-                                Como posso te ajudar hoje? Selecione uma dúvida à esquerda ou utilize nossa tabela de preços oficial abaixo!
+                                Como posso te ajudar hoje? Selecione uma dúvida à esquerda ou consulte a tabela de preços oficial digitando seu destino abaixo!
                             </div>
                         </div>
                     </div>
@@ -1047,6 +1059,8 @@
         const noResultsEl = document.getElementById('noResults');
         const resetSearchBtn = document.getElementById('resetSearchBtn');
         const activeFilterBadge = document.getElementById('activeFilterBadge');
+        const tabelaContainerWrapper = document.getElementById('tabelaContainerWrapper');
+        const initialStatePrompt = document.getElementById('initialStatePrompt');
 
         function normalizeText(text) {
             return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -1113,6 +1127,21 @@
         };
 
         function renderTable() {
+            const isSearching = searchTerm.trim().length > 0 || selectedCategory !== "TODOS";
+
+            if (!isSearching) {
+                tabelaContainerWrapper.classList.add('hidden');
+                initialStatePrompt.classList.remove('hidden');
+                initialStatePrompt.classList.add('flex');
+                noResultsEl.classList.add('hidden');
+                noResultsEl.classList.remove('flex');
+                return;
+            }
+
+            initialStatePrompt.classList.add('hidden');
+            initialStatePrompt.classList.remove('flex');
+            tabelaContainerWrapper.classList.remove('hidden');
+
             const filtered = filterData();
 
             resultsCountEl.innerHTML = `
@@ -1129,6 +1158,7 @@
 
             if (filtered.length === 0) {
                 destinationsGrid.innerHTML = '';
+                tabelaContainerWrapper.classList.add('hidden');
                 noResultsEl.classList.remove('hidden');
                 noResultsEl.classList.add('flex');
                 return;
@@ -1203,7 +1233,7 @@
         });
 
         const botAnswers = {
-            valores: "💰 <strong>Tarifas e Tabela Oficial:</strong> Nossos preços seguem rigorosamente a Portaria Nº 5.884/2026. Você pode pesquisar qualquer bairro ou cidade na nossa <strong>Tabela Oficial</strong> nesta página e clicar no destino para preencher o simulador automaticamente!",
+            valores: "💰 <strong>Tarifas e Tabela Oficial:</strong> Nossos preços seguem rigorosamente a Portaria Nº 5.884/2026. Digite o nome do seu bairro ou cidade na barra de pesquisa da tabela oficial para consultar os valores!",
             madrugada: "🌙 <strong>Atendimento na Madrugada:</strong> Sim! Atendemos 24 horas por dia, 7 dias por semana sob agendamento prévio. Seu motorista estará no aeroporto no horário exato do seu voo.",
             atraso: "✈️ <strong>Monitoramento de Voo:</strong> Rastreio o seu voo em tempo real. Se o pouso atrasar ou adiantar, estarei te aguardando no desembarque sem custo de espera!",
             pagamento: "💳 <strong>Formas de Pagamento:</strong> Aceito Pix, cartões de crédito e débito na maquininha a bordo, dinheiro em espécie e faturamento para empresas parceiras cadastradas.",
