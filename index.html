@@ -357,7 +357,7 @@
                     <ul class="space-y-4 text-sm text-gray-300">
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-plane text-accent text-base mt-1"></i>
-                            <span><strong>Rastreamento de Voo in Real Time:</strong> Seu táxi estará a postos mesmo se a aeronave adiantar ou atrasar.</span>
+                            <span><strong>Rastreamento de Voo em Tempo Real:</strong> Seu táxi estará a postos mesmo se a aeronave adiantar ou atrasar.</span>
                         </li>
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-credit-card text-accent text-base mt-1"></i>
@@ -607,8 +607,12 @@
                             </div>
                         </div>
 
-                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Dúvidas Frequentes (Clique):</p>
+                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Atalhos Práticos (Clique):</p>
                         <div class="space-y-2">
+                            <button onclick="perguntarAssistente('ola')" class="w-full p-2.5 rounded-xl bg-darkBg hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
+                                <span><i class="fa-solid fa-handshake text-accent mr-2"></i> Cumprimento / Início</span>
+                                <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
+                            </button>
                             <button onclick="perguntarAssistente('valores')" class="w-full p-2.5 rounded-xl bg-darkBg hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
                                 <span><i class="fa-solid fa-calculator text-accent mr-2"></i> Tarifas & Tabela Oficial</span>
                                 <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
@@ -655,15 +659,7 @@
                     </div>
 
                     <div id="chat-messages" class="chat-scroll flex-1 p-4 overflow-y-auto space-y-4">
-                        <div class="flex items-start gap-3 max-w-[85%]">
-                            <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs shrink-0 mt-1">
-                                <i class="fa-solid fa-taxi"></i>
-                            </div>
-                            <div class="bg-cardBg border border-gray-800 rounded-2xl p-3.5 text-xs text-gray-200 leading-relaxed shadow-sm">
-                                Olá! Sou o <strong>Miter Assistente Virtual.CNF</strong>. 🚕<br><br>
-                                Digite o nome do seu bairro, destino ou cidade aqui no chat para consultar o valor oficial da tabela (Portaria 5.884/2026) na hora!
-                            </div>
-                        </div>
+                        <!-- Mensagem inicial gerada dinamicamente pelo horário -->
                     </div>
 
                     <div class="p-3 border-t border-gray-800 bg-cardBg/60">
@@ -1035,13 +1031,13 @@
             }
 
             const query = normalizeText(destInput);
-            const enconTrado = TAXI_DATABASE.find(item => {
+            const encontrado = TAXI_DATABASE.find(item => {
                 const itemNome = normalizeText(item.name);
                 return itemNome.includes(query) || query.includes(itemNome);
             });
 
-            if (enconTrado) {
-                valorInput.value = formatCurrency(enconTrado.price);
+            if (encontrado) {
+                valorInput.value = formatCurrency(encontrado.price);
             }
         }
 
@@ -1207,7 +1203,20 @@
             renderTable();
         });
 
+        // Saudação dinâmica baseada no horário do dia (Bom dia, Boa tarde, Boa noite)
+        function obterSaudacao() {
+            const hora = new Date().getHours();
+            if (hora >= 5 && hora < 12) {
+                return "Bom dia! ☀️";
+            } else if (hora >= 12 && hora < 18) {
+                return "Boa tarde! 🌤️";
+            } else {
+                return "Boa noite! 🌙";
+            }
+        }
+
         const botAnswers = {
+            ola: `${obterSaudacao()} Seja muito bem-vindo(a) à <strong>Miter Táxi Especial CNF</strong>. 🚕<br><br>Em que posso te ajudar hoje? Digite o seu destino para consultar o valor oficial ou escolha um dos atalhos ao lado.`,
             valores: "💰 <strong>Tarifas e Tabela Oficial:</strong> Nossos preços seguem rigorosamente a Portaria Nº 5.884/2026. Digite o nome do seu bairro ou cidade aqui no chat para eu consultar o valor exato para você!",
             madrugada: "🌙 <strong>Atendimento na Madrugada:</strong> Sim! Atendemos 24 horas por dia, 7 dias por semana sob agendamento prévio. Seu motorista estará no aeroporto no horário exato do seu voo.",
             atraso: "✈️ <strong>Monitoramento de Voo:</strong> Rastreio o seu voo em tempo real. Se o pouso atrasar ou adiantar, estarei te aguardando no desembarque sem custo de espera!",
@@ -1216,13 +1225,27 @@
             pets: "🐾 <strong>Transporte de Animais:</strong> Aceitamos pets de pequeno e médio porte em caixas de transporte adequadas. Informe no agendamento para prepararmos o veículo."
         };
 
+        function inicializarChatAutomatico() {
+            const chatWin = document.getElementById('chat-messages');
+            chatWin.innerHTML = `
+                <div class="flex items-start gap-3 max-w-[85%]">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs shrink-0 mt-1">
+                        <i class="fa-solid fa-taxi"></i>
+                    </div>
+                    <div class="bg-cardBg border border-gray-800 rounded-2xl p-3.5 text-xs text-gray-200 leading-relaxed shadow-sm">
+                        ${botAnswers.ola}
+                    </div>
+                </div>
+            `;
+        }
+
         function perguntarAssistente(chave) {
             if (botAnswers[chave]) {
                 const chatWin = document.getElementById('chat-messages');
                 
                 const userBubble = document.createElement('div');
                 userBubble.className = 'flex items-start justify-end gap-3 max-w-[85%] ml-auto';
-                userBubble.innerHTML = `<div class="bg-blue-600 text-white rounded-2xl p-3 text-xs leading-relaxed shadow-sm">Pergunta rápida: ${chave.toUpperCase()}</div>`;
+                userBubble.innerHTML = `<div class="bg-blue-600 text-white rounded-2xl p-3 text-xs leading-relaxed shadow-sm">Opção selecionada: ${chave.toUpperCase()}</div>`;
                 chatWin.appendChild(userBubble);
 
                 setTimeout(() => {
@@ -1260,7 +1283,6 @@
                 const query = normalizeText(texto);
                 let resposta = "";
 
-                // Verifica se perguntou sobre preço/tabela ou se digitou um destino da tabela
                 const encontrado = TAXI_DATABASE.find(item => {
                     const nomeItem = normalizeText(item.name);
                     return nomeItem.includes(query) || query.includes(nomeItem);
@@ -1268,14 +1290,16 @@
 
                 if (encontrado) {
                     const precoFormatado = formatCurrency(encontrado.price);
-                    const msgZap = encodeURIComponent(`Olá Miter Táxi! Consultei no site o destino *${encontrado.name}* (${encontrado.category}) por *${precoFormatado}* (Portaria 5.884/2026) e gostaria de agendar.`);
+                    const msgZap = encodeURIComponent(`Olá Miter Táxi! Consultei no assistente virtual o destino *${encontrado.name}* (${encontrado.category}) por *${precoFormatado}* (Portaria 5.884/2026) e gostaria de agendar.`);
                     resposta = `📍 Destino encontrado na Tabela Oficial (Portaria 5.884/2026):<br>` +
                                `<strong class="text-white text-sm">${encontrado.name}</strong> (${encontrado.category})<br>` +
                                `💰 Valor Estimado: <strong class="text-emerald-400 text-sm">${precoFormatado}</strong><br><br>` +
                                `<a href="https://wa.me/5531984280227?text=${msgZap}" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-green-600 text-white font-bold text-xs hover:bg-green-700 transition-all"><i class="fa-brands fa-whatsapp text-sm"></i> Agendar este destino no WhatsApp</a>`;
                 } else {
                     const txtLower = texto.toLowerCase();
-                    if (txtLower.includes('preço') || txtLower.includes('valor') || txtLower.includes('tabela') || txtLower.includes('quanto')) {
+                    if (txtLower.includes('olá') || txtLower.includes('bom dia') || txtLower.includes('boa tarde') || txtLower.includes('boa noite') || txtLower.includes('oi')) {
+                        resposta = botAnswers.ola;
+                    } else if (txtLower.includes('preço') || txtLower.includes('valor') || txtLower.includes('tabela') || txtLower.includes('quanto')) {
                         resposta = botAnswers.valores;
                     } else if (txtLower.includes('madrugada')) {
                         resposta = botAnswers.madrugada;
@@ -1304,17 +1328,7 @@
         }
 
         function reiniciarChat() {
-            const chatWin = document.getElementById('chat-messages');
-            chatWin.innerHTML = `
-                <div class="flex items-start gap-3 max-w-[85%]">
-                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs shrink-0 mt-1">
-                        <i class="fa-solid fa-taxi"></i>
-                    </div>
-                    <div class="bg-cardBg border border-gray-800 rounded-2xl p-3.5 text-xs text-gray-200 leading-relaxed shadow-sm">
-                        Conversa reiniciada! Digite o nome do seu bairro ou destino para consultar o valor na tabela oficial. 🚕
-                    </div>
-                </div>
-            `;
+            inicializarChatAutomatico();
         }
 
         function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
@@ -1323,6 +1337,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             initCategories();
             renderTable();
+            inicializarChatAutomatico();
         });
     </script>
 </body>
