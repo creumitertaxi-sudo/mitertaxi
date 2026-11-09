@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miter Táxi Especial CNF | Aeroporto de Confins</title>
-    <meta name="description" content="Táxi executivo credenciado no Aeroporto de Confins (CNF). Traslados seguros, pontuais e confortáveis para Belo Horizonte e região.">
+    <title>Miter Táxi Especial CNF | Aeroporto de Confins e Tabela Oficial</title>
+    <meta name="description" content="Táxi executivo credenciado no Aeroporto de Confins (CNF). Traslados seguros, pontuais e tabela oficial Portaria 5.884/2026 para Belo Horizonte e região.">
    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -42,13 +42,15 @@
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .chat-scroll::-webkit-scrollbar {
+        .chat-scroll::-webkit-scrollbar, .custom-scrollbar::-webkit-scrollbar {
             width: 5px;
+            height: 5px;
         }
-        .chat-scroll::-webkit-scrollbar-track {
+        .chat-scroll::-webkit-scrollbar-track, .custom-scrollbar::-webkit-scrollbar-track {
             background: rgba(17, 25, 39, 0.5);
+            border-radius: 9999px;
         }
-        .chat-scroll::-webkit-scrollbar-thumb {
+        .chat-scroll::-webkit-scrollbar-thumb, .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #3b82f6;
             border-radius: 4px;
         }
@@ -74,6 +76,7 @@
                 <a href="#servicos" class="hover:text-accent transition-colors">Serviços</a>
                 <a href="#sobre" class="hover:text-accent transition-colors">Sobre Mim</a>
                 <a href="#simulador" class="hover:text-accent transition-colors">Orçamento</a>
+                <a href="#tabela-precos" class="hover:text-accent transition-colors">Tabela Oficial</a>
                 <a href="#atendimento-virtual" class="hover:text-accent transition-colors">Assistente Virtual</a>
             </nav>
 
@@ -98,6 +101,7 @@
             <a href="#servicos" class="block py-2 text-gray-300 hover:text-accent font-medium">Serviços</a>
             <a href="#sobre" class="block py-2 text-gray-300 hover:text-accent font-medium">Sobre Mim</a>
             <a href="#simulador" class="block py-2 text-gray-300 hover:text-accent font-medium">Orçamento</a>
+            <a href="#tabela-precos" class="block py-2 text-gray-300 hover:text-accent font-medium">Tabela Oficial</a>
             <a href="#atendimento-virtual" class="block py-2 text-gray-300 hover:text-accent font-medium">Assistente Virtual</a>
             <div class="pt-2 flex flex-col gap-2">
                 <a href="https://www.instagram.com/mitertaxi" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold transition-all text-sm">
@@ -133,8 +137,8 @@
                         <a href="#simulador" class="inline-flex items-center justify-center px-7 py-4 rounded-xl bg-accent hover:bg-accentHover text-white font-semibold transition-all shadow-xl shadow-blue-600/30 group">
                             Simular Corrida / Orçamento <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                         </a>
-                        <a href="https://wa.me/5531984280227?text=Olá!%20Gostaria%20de%20consultar%20disponibilidade%20para%20o%20Aeroporto%20de%20Confins." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-7 py-4 rounded-xl bg-green-600 hover:bg-green-700 text-white font-semibold transition-all shadow-xl shadow-green-600/20">
-                            <i class="fa-brands fa-whatsapp mr-2 text-xl"></i> WhatsApp: (31) 98428-0227
+                        <a href="#tabela-precos" class="inline-flex items-center justify-center px-7 py-4 rounded-xl bg-cardBg hover:bg-gray-800 text-white border border-gray-700 font-semibold transition-all shadow-xl">
+                            <i class="fa-solid fa-table-list mr-2 text-accent"></i> Ver Tabela Oficial
                         </a>
                     </div>
 
@@ -220,7 +224,6 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
                 <div class="rounded-2xl bg-cardBg p-8 border border-gray-800 shadow-xl hover:border-blue-500 transition-all duration-300 group hover:-translate-y-1">
                     <div class="w-14 h-14 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
                         <i class="fa-solid fa-shield-halved text-2xl"></i>
@@ -231,7 +234,6 @@
                     </p>
                 </div>
                 
-                <!-- Card 2 -->
                 <div class="rounded-2xl bg-cardBg p-8 border border-gray-800 shadow-xl hover:border-blue-500 transition-all duration-300 group hover:-translate-y-1">
                     <div class="w-14 h-14 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
                         <i class="fa-solid fa-clock text-2xl"></i>
@@ -242,7 +244,6 @@
                     </p>
                 </div>
                 
-                <!-- Card 3 -->
                 <div class="rounded-2xl bg-cardBg p-8 border border-gray-800 shadow-xl hover:border-blue-500 transition-all duration-300 group hover:-translate-y-1">
                     <div class="w-14 h-14 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
                         <i class="fa-solid fa-car-side text-2xl"></i>
@@ -266,7 +267,6 @@
             </div>
 
             <div class="grid lg:grid-cols-3 gap-8">
-                <!-- Serviço 1 -->
                 <div class="rounded-2xl bg-cardBg border border-gray-800 p-8 flex flex-col justify-between hover:border-gray-700 transition-all">
                     <div>
                         <div class="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-accent mb-6">
@@ -284,7 +284,6 @@
                     </ul>
                 </div>
 
-                <!-- Serviço 2 -->
                 <div class="rounded-2xl bg-cardBg border border-gray-800 p-8 flex flex-col justify-between hover:border-gray-700 transition-all">
                     <div>
                         <div class="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-accent mb-6">
@@ -302,7 +301,6 @@
                     </ul>
                 </div>
 
-                <!-- Serviço 3 -->
                 <div class="rounded-2xl bg-cardBg border border-gray-800 p-8 flex flex-col justify-between hover:border-gray-700 transition-all">
                     <div>
                         <div class="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-accent mb-6">
@@ -395,7 +393,7 @@
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <span class="text-green-400 font-semibold text-xs tracking-widest uppercase">Orçamento Sem Compromisso</span>
                 <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-2 mb-4">Simulador de Corrida</h2>
-                <p class="text-gray-400">Preencha ou edite livremente os dados da sua viagem abaixo. Você pode modificar qualquer campo, limpar o formulário e enviar direto para o WhatsApp <strong>(31) 98428-0227</strong>.</p>
+                <p class="text-gray-400">Preencha abaixo ou selecione um destino direto da <a href="#tabela-precos" class="text-accent underline font-semibold">Tabela Oficial</a> para preencher automaticamente. Envie direto para o WhatsApp <strong>(31) 98428-0227</strong>.</p>
             </div>
 
             <form id="form-simulador" onsubmit="enviarSimulacaoWhatsApp(event)" class="rounded-2xl bg-cardBg border border-gray-800 p-6 sm:p-10 shadow-2xl space-y-6">
@@ -405,11 +403,11 @@
                     <label class="block text-sm font-semibold text-gray-200 mb-3">1. Sentido da Viagem:</label>
                     <div class="grid sm:grid-cols-2 gap-4">
                         <button type="button" id="btn-rota-1" onclick="setSentidoRota('Confins (CNF) ➔ Belo Horizonte / Região')" class="p-4 rounded-xl border border-blue-500 bg-blue-500/10 text-white font-medium text-left transition-all flex items-center justify-between">
-                            <span>Confins (CNF) ➔ BH / Região</span>
+                            <span>Confins (CNF) ➔ Destino</span>
                             <i id="icon-rota-1" class="fa-solid fa-circle-check text-accent"></i>
                         </button>
                         <button type="button" id="btn-rota-2" onclick="setSentidoRota('Belo Horizonte / Região ➔ Confins (CNF)')" class="p-4 rounded-xl border border-gray-700 bg-darkBg text-gray-300 font-medium text-left transition-all flex items-center justify-between">
-                            <span>BH / Região ➔ Confins (CNF)</span>
+                            <span>Destino ➔ Confins (CNF)</span>
                             <i id="icon-rota-2" class="fa-solid fa-circle text-gray-600"></i>
                         </button>
                     </div>
@@ -435,6 +433,17 @@
                             </span>
                             <input type="text" id="input-destino" value="Bairro Savassi, Belo Horizonte - MG" placeholder="Ex: Bairro, Hotel ou Cidade" required class="w-full pl-10 pr-4 py-3 rounded-xl bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-accent transition-colors">
                         </div>
+                    </div>
+                </div>
+
+                <!-- Campo de Valor Estimado Portaria -->
+                <div>
+                    <label for="input-valor" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Valor Estimado / Tabela Oficial (Portaria 5884/2026):</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-emerald-400 font-bold">
+                            R$
+                        </span>
+                        <input type="text" id="input-valor" value="Consulte a Tabela Abaixo" placeholder="Ex: R$ 198,00" class="w-full pl-10 pr-4 py-3 rounded-xl bg-darkBg border border-emerald-500/50 text-emerald-400 font-bold text-sm focus:outline-none focus:border-emerald-400 transition-colors">
                     </div>
                 </div>
 
@@ -502,19 +511,111 @@
         </div>
     </section>
 
+    <!-- TABELA OFICIAL DE PREÇOS (Portaria Nº 5884/2026) -->
+    <section id="tabela-precos" class="py-20 bg-darkBg border-t border-gray-800/40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-amber-400 font-semibold text-xs tracking-widest uppercase">Portaria Nº 5.884 de 01/10/2026</span>
+                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-2 mb-3">Tabela Oficial de Preços de Táxi</h2>
+                <p class="text-gray-400 text-sm">Pesquise seu destino abaixo. <strong class="text-white">Clique em qualquer card de destino</strong> para preencher automaticamente o simulador de orçamento acima!</p>
+            </div>
+
+            <!-- Header e Taxímetros Rápidos -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-cardBg border border-gray-800 p-4 rounded-2xl mb-6 shadow-xl">
+                <div class="flex items-center gap-3">
+                    <div class="bg-amber-500/20 p-3 rounded-xl text-amber-400 border border-amber-500/30">
+                        <i class="fa-solid fa-taxi text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white text-base">Tarifas Oficiais Municipais</h3>
+                        <p class="text-xs text-gray-400">Prefeitura Municipal de Confins/MG</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2 text-xs">
+                    <div class="bg-darkBg px-3 py-2 rounded-xl border border-gray-700 text-center">
+                        <span class="block text-amber-400 text-[10px] uppercase font-bold">Bandeirada</span>
+                        <span class="font-bold text-white">R$ 5,40</span>
+                    </div>
+                    <div class="bg-darkBg px-3 py-2 rounded-xl border border-gray-700 text-center">
+                        <span class="block text-amber-400 text-[10px] uppercase font-bold">Km Bandeira I</span>
+                        <span class="font-bold text-white">R$ 4,50</span>
+                    </div>
+                    <div class="bg-darkBg px-3 py-2 rounded-xl border border-gray-700 text-center">
+                        <span class="block text-amber-400 text-[10px] uppercase font-bold">Km Bandeira II</span>
+                        <span class="font-bold text-white">R$ 5,40</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caixa de Pesquisa da Tabela -->
+            <div class="bg-cardBg border border-gray-800 p-4 rounded-2xl mb-6 shadow-xl space-y-3">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                        <i class="fa-solid fa-magnifying-glass text-gray-400 text-base"></i>
+                    </span>
+                    <input 
+                        type="text" 
+                        id="searchInput"
+                        placeholder="Digite o nome do destino, bairro ou cidade (ex: Pampulha, Savassi, Betim, Sete Lagoas)..." 
+                        class="w-full pl-11 pr-10 py-3 bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-sm sm:text-base rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+                        autocomplete="off"
+                    >
+                    <button 
+                        id="clearSearch" 
+                        class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-white transition-colors"
+                        title="Limpar busca"
+                    >
+                        <i class="fa-solid fa-circle-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Categorias (Scroll Horizontal) -->
+                <div id="categoryContainer" class="flex gap-2 overflow-x-auto pt-2 pb-1 custom-scrollbar text-xs font-medium whitespace-nowrap">
+                    <!-- Gerado via JS -->
+                </div>
+            </div>
+
+            <!-- Status e Contador -->
+            <div class="flex items-center justify-between mb-4 px-1">
+                <div id="resultsCount" class="text-xs font-semibold text-gray-400 flex items-center gap-2">
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>Carregando tabela oficial...</span>
+                </div>
+                <div id="activeFilterBadge" class="hidden text-xs bg-amber-500/10 text-amber-400 font-medium px-2.5 py-1 rounded-full border border-amber-500/20">
+                    <!-- Filtro Ativo -->
+                </div>
+            </div>
+
+            <!-- Grid de Destinos da Tabela -->
+            <div id="destinationsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                <!-- Cards injetados via JavaScript -->
+            </div>
+
+            <!-- Mensagem Nenhum Resultado -->
+            <div id="noResults" class="hidden flex-col items-center justify-center py-16 text-center bg-cardBg rounded-2xl border border-dashed border-gray-800 shadow-sm my-4">
+                <div class="w-16 h-16 bg-amber-500/10 rounded-full flex items-center justify-center text-amber-400 text-2xl mb-3 border border-amber-500/20">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <h3 class="text-white font-bold text-lg mb-1">Nenhum destino encontrado</h3>
+                <p class="text-gray-400 text-sm max-w-md px-4 mb-4">Não encontramos locais correspondentes à sua busca na Portaria 5884/2026.</p>
+                <button id="resetSearchBtn" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs rounded-lg transition-colors shadow-sm">
+                    Limpar pesquisa
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Assistente Virtual -->
     <section id="atendimento-virtual" class="py-20 bg-darkBg border-t border-gray-800/40">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-accent font-semibold text-xs tracking-widest uppercase">Suporte 24/7 Automatizado</span>
                 <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-2 mb-4">Assistente Virtual Inteligente</h2>
-                <p class="text-gray-400">Tire suas dúvidas instantaneamente sobre agendamento de táxi, tarifas, voos e bagagens utilizando os botões rápidos ou conversando no chat abaixo.</p>
+                <p class="text-gray-400">Tire suas dúvidas instantaneamente sobre agendamento de táxi, tarifas oficiais, voos e bagagens.</p>
             </div>
 
-            <!-- Widget do Chat -->
             <div class="rounded-2xl bg-cardBg border border-gray-800 overflow-hidden shadow-2xl grid lg:grid-cols-12">
-                
-                <!-- Menu Lateral de Botões -->
                 <div class="lg:col-span-4 bg-darkBg/60 p-5 border-r border-gray-800 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center gap-3 pb-4 border-b border-gray-800 mb-4">
@@ -532,7 +633,7 @@
                         <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Dúvidas Frequentes (Clique):</p>
                         <div class="space-y-2">
                             <button onclick="perguntarAssistente('valores')" class="w-full p-2.5 rounded-xl bg-darkBg hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
-                                <span><i class="fa-solid fa-calculator text-accent mr-2"></i> Tarifas & Orçamentos</span>
+                                <span><i class="fa-solid fa-calculator text-accent mr-2"></i> Tarifas & Tabela Oficial</span>
                                 <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
                             </button>
                             <button onclick="perguntarAssistente('madrugada')" class="w-full p-2.5 rounded-xl bg-darkBg hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
@@ -565,9 +666,7 @@
                     </div>
                 </div>
 
-                <!-- Janela de Chat -->
                 <div class="lg:col-span-8 bg-darkBg flex flex-col h-[480px]">
-                    
                     <div class="p-4 border-b border-gray-800 bg-cardBg/40 flex items-center justify-between">
                         <div class="flex items-center gap-2 text-xs text-gray-300">
                             <i class="fa-solid fa-comments text-accent"></i>
@@ -585,7 +684,7 @@
                             </div>
                             <div class="bg-cardBg border border-gray-800 rounded-2xl p-3.5 text-xs text-gray-200 leading-relaxed shadow-sm">
                                 Olá! Sou o assistente virtual da <strong>Miter Táxi Especial CNF</strong>. 🚕<br><br>
-                                Como posso te ajudar hoje? Selecione uma dúvida à esquerda ou digite sua pergunta na caixa de texto abaixo!
+                                Como posso te ajudar hoje? Selecione uma dúvida à esquerda ou utilize nossa tabela de preços oficial abaixo!
                             </div>
                         </div>
                     </div>
@@ -598,9 +697,7 @@
                             </button>
                         </form>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </section>
@@ -609,7 +706,6 @@
     <footer class="bg-cardBg border-t border-gray-800 pt-12 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-gray-800">
-                
                 <div class="md:col-span-2 space-y-4">
                     <div class="flex items-center gap-3">
                         <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white">
@@ -618,7 +714,7 @@
                         <span class="text-xl font-bold tracking-wider text-white">MITER<span class="text-accent">TAXI</span></span>
                     </div>
                     <p class="text-xs text-gray-400 leading-relaxed max-w-md">
-                        Serviço de Táxi Especial e Traslados no Aeroporto Internacional de Confins (CNF). Atendimento 24h sob agendamento prévio com total pontualidade e segurança.
+                        Serviço de Táxi Especial e Traslados no Aeroporto Internacional de Confins (CNF). Atendimento 24h sob agendamento prévio com total pontualidade e segurança. Baseado na Portaria Nº 5.884/2026.
                     </p>
                     <div class="flex items-center gap-3 pt-2">
                         <a href="https://wa.me/5531984280227?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-green-600/20 text-green-400 border border-green-500/30 flex items-center justify-center hover:bg-green-600 hover:text-white transition-all">
@@ -637,6 +733,7 @@
                         <li><a href="#servicos" class="hover:text-accent transition-colors">Serviços Executivos</a></li>
                         <li><a href="#sobre" class="hover:text-accent transition-colors">Sobre o Motorista</a></li>
                         <li><a href="#simulador" class="hover:text-accent transition-colors">Simular Corrida</a></li>
+                        <li><a href="#tabela-precos" class="hover:text-accent transition-colors">Tabela Oficial</a></li>
                         <li><a href="#atendimento-virtual" class="hover:text-accent transition-colors">Assistente Virtual</a></li>
                     </ul>
                 </div>
@@ -652,7 +749,6 @@
                     <p class="text-xs text-gray-300 font-semibold mt-2">Instagram Oficial:</p>
                     <a href="https://www.instagram.com/mitertaxi" target="_blank" rel="noopener noreferrer" class="text-xs text-pink-400 font-bold hover:underline mt-0.5 block">@mitertaxi</a>
                 </div>
-
             </div>
 
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
@@ -672,18 +768,15 @@
             <button onclick="closeModal('modal-privacidade')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            
             <div class="flex items-center gap-3 border-b border-gray-800 pb-3">
                 <i class="fa-solid fa-user-shield text-accent text-2xl"></i>
                 <h3 class="text-lg font-bold text-white">Termos de Privacidade e Proteção de Dados (LGPD)</h3>
             </div>
-
             <div class="text-xs text-gray-300 space-y-3 leading-relaxed">
                 <p><strong>1. Coleta de Informações:</strong> As informações inseridas no simulador de corrida (como origem, destino, data, horário e número de contato) são utilizadas única e exclusivamente para a elaboração de orçamentos de transporte e alinhamento do serviço de táxi.</p>
                 <p><strong>2. Sigilo e Proteção:</strong> Respeitamos integralmente a Lei Geral de Proteção de Dados (Lei nº 13.709/2018). Seus dados pessoais não serão repassados, vendidos ou compartilhados com terceiros sob nenhuma hipótese.</p>
                 <p><strong>3. Comunicação via WhatsApp:</strong> Ao clicar no botão de solicitação de orçamento, a comunicação ocorrerá diretamente entre o passageiro e o motorista pelo aplicativo oficial do WhatsApp (31 98428-0227).</p>
             </div>
-
             <div class="pt-3 border-t border-gray-800 flex justify-end">
                 <button onclick="closeModal('modal-privacidade')" class="px-5 py-2.5 rounded-xl bg-accent text-white text-xs font-semibold hover:bg-accentHover transition-all">Entendi e Concordo</button>
             </div>
@@ -695,25 +788,22 @@
             <button onclick="closeModal('modal-autenticidade')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            
             <div class="flex items-center gap-3 border-b border-gray-800 pb-3">
                 <i class="fa-solid fa-certificate text-gold text-2xl"></i>
                 <h3 class="text-lg font-bold text-white">Termo de Autenticidade & Credenciamento CNF</h3>
             </div>
-
             <div class="text-xs text-gray-300 space-y-3 leading-relaxed">
                 <p><strong>1. Credenciamento Oficial:</strong> O serviço prestado por Miter Táxi é integralmente credenciado e regulamentado para operação de transporte individual de passageiros no Aeroporto Internacional de Confins - Tancredo Neves (CNF).</p>
                 <p><strong>2. Vistoria e Segurança:</strong> O veículo passa por vistorias periódicas obrigatórias pelos órgãos de trânsito competentes, estando equipado com seguro de passageiros e itens de segurança em pleno funcionamento.</p>
-                <p><strong>3. Transparência Tarifária:</strong> Os valores combinados previamente possuem garantia de transparência, sem taxas ocultas ou cobranças indevidas ao desembarcar.</p>
+                <p><strong>3. Transparência Tarifária:</strong> Os valores oficiais baseiam-se na Portaria Nº 5.884/2026, garantindo total transparência sem taxas ocultas.</p>
             </div>
-
             <div class="pt-3 border-t border-gray-800 flex justify-end">
                 <button onclick="closeModal('modal-autenticidade')" class="px-5 py-2.5 rounded-xl bg-gold text-slate-950 font-bold text-xs hover:bg-amber-400 transition-all">Fechar Autenticidade</button>
             </div>
         </div>
     </div>
 
-    <!-- Scripts da Aplicação -->
+    <!-- Scripts Integrados -->
     <script>
         // Menu Mobile
         const menuBtn = document.getElementById('menu-btn');
@@ -805,14 +895,12 @@
                 icon2.className = 'fa-solid fa-circle text-gray-600';
                 
                 origInput.value = 'Aeroporto Internacional de Confins (CNF)';
-                destInput.value = 'Bairro Savassi, Belo Horizonte - MG';
             } else {
                 btn2.className = 'p-4 rounded-xl border border-blue-500 bg-blue-500/10 text-white font-medium text-left transition-all flex items-center justify-between';
                 btn1.className = 'p-4 rounded-xl border border-gray-700 bg-darkBg text-gray-300 font-medium text-left transition-all flex items-center justify-between';
                 icon2.className = 'fa-solid fa-circle-check text-accent';
                 icon1.className = 'fa-solid fa-circle text-gray-600';
 
-                origInput.value = 'Belo Horizonte - MG';
                 destInput.value = 'Aeroporto Internacional de Confins (CNF)';
             }
         }
@@ -820,8 +908,9 @@
         function limparSimulador() {
             document.getElementById('form-simulador').reset();
             setSentidoRota('Confins (CNF) ➔ Belo Horizonte / Região');
-            document.getElementById('input-origem').value = '';
-            document.getElementById('input-destino').value = '';
+            document.getElementById('input-origem').value = 'Aeroporto Internacional de Confins (CNF)';
+            document.getElementById('input-destino').value = 'Bairro Savassi, Belo Horizonte - MG';
+            document.getElementById('input-valor').value = 'Consulte a Tabela Abaixo';
         }
 
         function enviarSimulacaoWhatsApp(event) {
@@ -829,6 +918,7 @@
 
             const origem = document.getElementById('input-origem').value.trim() || 'Não informada';
             const destino = document.getElementById('input-destino').value.trim() || 'Não informado';
+            const valorEst = document.getElementById('input-valor').value.trim() || 'A combinar';
             const data = document.getElementById('input-data').value || 'A combinar';
             const hora = document.getElementById('input-hora').value.trim() || 'A combinar';
             const passageiros = document.getElementById('input-passageiros').value;
@@ -842,6 +932,7 @@
                              `🚕 *Sentido:* ${sentidoRotaSelecionada}%0A` +
                              `📍 *Origem:* ${origem}%0A` +
                              `🏁 *Destino:* ${destino}%0A` +
+                             `💰 *Valor Tabela Oficial:* ${valorEst}%0A` +
                              `📅 *Data:* ${data}%0A` +
                              `⏰ *Horário/Voo:* ${hora}%0A` +
                              `👥 *Passageiros:* ${passageiros}%0A` +
@@ -854,9 +945,306 @@
             window.open(`https://wa.me/${phone}?text=${mensagem}`, '_blank');
         }
 
+        // ================= BANCO DE DADOS E LÓGICA DA TABELA OFICIAL (Portaria 5884/2026) =================
+        const TAXI_DATABASE = [
+            // BELO HORIZONTE
+            { id: 1, name: "Aarão Reis", category: "Belo Horizonte", price: 162.00 },
+            { id: 2, name: "Abadia", category: "Belo Horizonte", price: 199.00 },
+            { id: 3, name: "Aeroporto da Pampulha", category: "Belo Horizonte", price: 162.00 },
+            { id: 4, name: "Alípio de Melo", category: "Belo Horizonte", price: 187.00 },
+            { id: 5, name: "Alto dos Pinheiros", category: "Belo Horizonte", price: 205.00 },
+            { id: 6, name: "Alto Santa Lúcia", category: "Belo Horizonte", price: 235.00 },
+            { id: 9, name: "Anchieta", category: "Belo Horizonte", price: 202.00 },
+            { id: 12, name: "Área Interna da Contorno (Centro / Savassi / Funcionários)", category: "Belo Horizonte", price: 198.00 },
+            { id: 17, name: "Bandeirantes da Pampulha", category: "Belo Horizonte", price: 164.00 },
+            { id: 18, name: "Barreiro Baixo", category: "Belo Horizonte", price: 242.00 },
+            { id: 23, name: "Belvedere Via Anel", category: "Belo Horizonte", price: 235.00 },
+            { id: 25, name: "BH Shopping", category: "Belo Horizonte", price: 235.00 },
+            { id: 32, name: "Buritis", category: "Belo Horizonte", price: 230.00 },
+            { id: 46, name: "Castelo", category: "Belo Horizonte", price: 188.00 },
+            { id: 52, name: "Cidade Administrativa", category: "Belo Horizonte", price: 115.00 },
+            { id: 54, name: "Cidade Nova", category: "Belo Horizonte", price: 166.00 },
+            { id: 74, name: "Estoril", category: "Belo Horizonte", price: 230.00 },
+            { id: 80, name: "Floresta", category: "Belo Horizonte", price: 198.00 },
+            { id: 86, name: "Grajaú", category: "Belo Horizonte", price: 206.00 },
+            { id: 88, name: "Gutierrez", category: "Belo Horizonte", price: 206.00 },
+            { id: 103, name: "Jardim América", category: "Belo Horizonte", price: 213.00 },
+            { id: 124, name: "Mangabeiras", category: "Belo Horizonte", price: 211.00 },
+            { id: 133, name: "Mineirão - Estádio", category: "Belo Horizonte", price: 164.00 },
+            { id: 150, name: "Ouro Preto", category: "Belo Horizonte", price: 164.00 },
+            { id: 162, name: "Piratininga / Rio Branco", category: "Belo Horizonte", price: 143.00 },
+            { id: 163, name: "Planalto", category: "Belo Horizonte", price: 145.00 },
+            { id: 176, name: "Santa Amélia", category: "Belo Horizonte", price: 145.00 },
+            { id: 179, name: "Santa Efigênia", category: "Belo Horizonte", price: 202.00 },
+            { id: 185, name: "Santa Mônica", category: "Belo Horizonte", price: 144.00 },
+            { id: 190, name: "Santo Antônio", category: "Belo Horizonte", price: 202.00 },
+            { id: 192, name: "São Bento", category: "Belo Horizonte", price: 228.00 },
+            { id: 213, name: "Shopping Del Rey", category: "Belo Horizonte", price: 183.00 },
+            { id: 215, name: "Sion", category: "Belo Horizonte", price: 202.00 },
+            { id: 222, name: "UFMG", category: "Belo Horizonte", price: 164.00 },
+            { id: 227, name: "Venda Nova", category: "Belo Horizonte", price: 144.00 },
+
+            // CONFINS
+            { id: 237, name: "Centro de Manutenção Gol", category: "Confins", price: 34.00 },
+            { id: 238, name: "Confins Sede", category: "Confins", price: 46.00 },
+            { id: 239, name: "Hotel Fazenda Confins", category: "Confins", price: 60.00 },
+            { id: 240, name: "Gran Royale", category: "Confins", price: 85.00 },
+            { id: 242, name: "Mineração Lapa Vermelha", category: "Confins", price: 66.00 },
+
+            // BETIM
+            { id: 256, name: "Fiat Automóveis", category: "Betim", price: 267.00 },
+            { id: 266, name: "Jardim Piemonte", category: "Betim", price: 250.00 },
+            { id: 271, name: "Petrobrás", category: "Betim", price: 267.00 },
+            { id: 278, name: "Betim Sede", category: "Betim", price: 310.00 },
+
+            // CONTAGEM
+            { id: 290, name: "CEASA", category: "Contagem", price: 221.00 },
+            { id: 292, name: "Cidade Industrial", category: "Contagem", price: 240.00 },
+            { id: 299, name: "Contagem Sede", category: "Contagem", price: 245.00 },
+            { id: 302, name: "Eldorado", category: "Contagem", price: 221.00 },
+            { id: 311, name: "Itaú Power Shopping", category: "Contagem", price: 221.00 },
+            { id: 319, name: "Nova Contagem", category: "Contagem", price: 322.00 },
+            { id: 331, name: "Riacho das Pedras", category: "Contagem", price: 240.00 },
+
+            // LAGOA SANTA
+            { id: 340, name: "Aeronautas", category: "Lagoa Santa", price: 87.00 },
+            { id: 348, name: "Hotel Comfort", category: "Lagoa Santa", price: 76.00 },
+            { id: 350, name: "Hotel Ramada", category: "Lagoa Santa", price: 103.00 },
+            { id: 359, name: "Lagoa Santa Sede", category: "Lagoa Santa", price: 103.00 },
+            { id: 362, name: "Vila Asas", category: "Lagoa Santa", price: 87.00 },
+
+            // NOVA LIMA
+            { id: 372, name: "Condomínio Alphaville", category: "Nova Lima", price: 334.00 },
+            { id: 383, name: "Jardim Canadá", category: "Nova Lima", price: 272.00 },
+            { id: 386, name: "Macacos", category: "Nova Lima", price: 302.00 },
+            { id: 394, name: "Retiro das Pedras", category: "Nova Lima", price: 272.00 },
+            { id: 395, name: "Nova Lima Sede", category: "Nova Lima", price: 332.00 },
+            { id: 408, name: "Vila da Serra / Seis Pistas", category: "Nova Lima", price: 250.00 },
+
+            // PEDRO LEOPOLDO
+            { id: 418, name: "Dr. Lund", category: "Pedro Leopoldo", price: 75.00 },
+            { id: 423, name: "Pedro Leopoldo Sede", category: "Pedro Leopoldo", price: 95.00 },
+
+            // VESPASIANO
+            { id: 427, name: "Cidade do Galo", category: "Vespasiano", price: 118.00 },
+            { id: 435, name: "Hotel San Diego", category: "Vespasiano", price: 88.00 },
+            { id: 448, name: "Vespasiano Sede", category: "Vespasiano", price: 81.00 },
+
+            // SETE LAGOAS
+            { id: 450, name: "Arena do Jacaré", category: "Sete Lagoas", price: 281.00 },
+            { id: 454, name: "Fiat Iveco", category: "Sete Lagoas", price: 312.00 },
+            { id: 457, name: "Sete Lagoas Sede", category: "Sete Lagoas", price: 281.00 },
+            { id: 459, name: "Shopping Sete Lagoas", category: "Sete Lagoas", price: 281.00 },
+
+            // BRUMADINHO & INHOTIM
+            { id: 461, name: "Brumadinho Sede", category: "Brumadinho", price: 440.00 },
+            { id: 463, name: "Museu Inhotim", category: "Brumadinho", price: 440.00 },
+            { id: 465, name: "Retiro do Chalé", category: "Brumadinho", price: 402.00 },
+
+            // RIBEIRÃO DAS NEVES
+            { id: 470, name: "Justinópolis", category: "Ribeirão das Neves", price: 180.00 },
+            { id: 476, name: "Ribeirão das Neves Sede", category: "Ribeirão das Neves", price: 240.00 },
+
+            // SABARÁ
+            { id: 479, name: "Ana Lúcia Sabará", category: "Sabará", price: 186.00 },
+            { id: 485, name: "Hotel Fazenda Capuã", category: "Sabará", price: 295.00 },
+
+            // JABOTICATUBAS
+            { id: 487, name: "Hotel Canto da Siriema", category: "Jaboticatubas", price: 412.00 },
+            { id: 490, name: "Serra do Cipó", category: "Jaboticatubas", price: 453.00 },
+
+            // OUTROS MUNICÍPIOS / INTERIOR
+            { id: 492, name: "Caeté Sede", category: "Outras Cidades", price: 380.00 },
+            { id: 493, name: "Hotel Fazenda Tauá (Caeté)", category: "Outras Cidades", price: 325.00 },
+            { id: 496, name: "Conselheiro Lafaiete Sede", category: "Outras Cidades", price: 592.00 },
+            { id: 497, name: "Congonhas Sede", category: "Outras Cidades", price: 514.00 },
+            { id: 505, name: "Itabirito Sede", category: "Outras Cidades", price: 470.00 },
+            { id: 506, name: "Itabira Sede", category: "Outras Cidades", price: 542.00 },
+            { id: 507, name: "Itaúna Sede", category: "Outras Cidades", price: 490.00 },
+            { id: 514, name: "Matozinhos Sede", category: "Outras Cidades", price: 145.00 },
+            { id: 517, name: "Ouro Branco Sede", category: "Outras Cidades", price: 595.00 },
+            { id: 518, name: "Ouro Preto Sede", category: "Outras Cidades", price: 585.00 },
+            { id: 519, name: "Pará de Minas Sede", category: "Outras Cidades", price: 504.00 },
+
+            // TARIFAS ESPECIAIS & TOURS
+            { id: 525, name: "BH City Tour (4 horas à disposição + 100km)", category: "Tarifas Especiais / Tours", price: 343.00 },
+            { id: 526, name: "Congonhas Tour (6 horas à disposição)", category: "Tarifas Especiais / Tours", price: 760.00 },
+            { id: 531, name: "Ouro Preto Tour", category: "Tarifas Especiais / Tours", price: 830.00 },
+            { id: 537, name: "Sabará Tour", category: "Tarifas Especiais / Tours", price: 475.00 }
+        ];
+
+        let selectedCategory = "TODOS";
+        let searchTerm = "";
+
+        const searchInput = document.getElementById('searchInput');
+        const clearSearchBtn = document.getElementById('clearSearch');
+        const categoryContainer = document.getElementById('categoryContainer');
+        const destinationsGrid = document.getElementById('destinationsGrid');
+        const resultsCountEl = document.getElementById('resultsCount');
+        const noResultsEl = document.getElementById('noResults');
+        const resetSearchBtn = document.getElementById('resetSearchBtn');
+        const activeFilterBadge = document.getElementById('activeFilterBadge');
+
+        function normalizeText(text) {
+            return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        }
+
+        function formatCurrency(val) {
+            return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function initCategories() {
+            const categories = ["TODOS", ...new Set(TAXI_DATABASE.map(item => item.category))];
+            
+            categoryContainer.innerHTML = categories.map(cat => {
+                const isActive = cat === selectedCategory;
+                const activeClass = isActive 
+                    ? "bg-amber-500 text-slate-950 font-bold shadow-sm" 
+                    : "bg-darkBg border border-gray-700 text-gray-300 hover:bg-gray-800";
+                
+                return `
+                    <button 
+                        onclick="setCategory('${cat}')" 
+                        class="px-3.5 py-1.5 rounded-lg transition-all duration-200 text-xs ${activeClass}"
+                    >
+                        ${cat}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        window.setCategory = function(cat) {
+            selectedCategory = cat;
+            initCategories();
+            renderTable();
+        };
+
+        function filterData() {
+            const query = normalizeText(searchTerm.trim());
+
+            return TAXI_DATABASE.filter(item => {
+                const matchesCategory = selectedCategory === "TODOS" || item.category === selectedCategory;
+                if (!matchesCategory) return false;
+                if (!query) return true;
+
+                const nameNormalized = normalizeText(item.name);
+                const categoryNormalized = normalizeText(item.category);
+                const directMatch = nameNormalized.includes(query) || categoryNormalized.includes(query);
+
+                const initials = item.name
+                    .split(/[\s\-\/\(\)]+/)
+                    .filter(word => word.length > 0)
+                    .map(word => word[0])
+                    .join('')
+                    .toLowerCase();
+
+                const matchesInitials = initials.startsWith(query);
+                return directMatch || matchesInitials;
+            });
+        }
+
+        // FUNÇÃO QUE SELECIONA O DESTINO E PREENCHE O SIMULADOR AUTOMATICAMENTE
+        window.selecionarDestinoSimulador = function(nomeDestino, precoDestino) {
+            document.getElementById('input-destino').value = nomeDestino + ' (' + formatCurrency(precoDestino) + ')';
+            document.getElementById('input-valor').value = formatCurrency(precoDestino);
+
+            // Rolar suavemente até o simulador de corrida
+            document.getElementById('simulador').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        function renderTable() {
+            const filtered = filterData();
+
+            resultsCountEl.innerHTML = `
+                <span class="inline-block w-2 h-2 rounded-full ${filtered.length > 0 ? 'bg-emerald-500' : 'bg-rose-500'}"></span>
+                <span>${filtered.length} ${filtered.length === 1 ? 'destino encontrado' : 'destinos encontrados'}</span>
+            `;
+
+            if (selectedCategory !== "TODOS" || searchTerm) {
+                activeFilterBadge.classList.remove('hidden');
+                activeFilterBadge.innerHTML = `Filtro: ${selectedCategory !== "TODOS" ? selectedCategory : ''} ${searchTerm ? `"${searchTerm}"` : ''}`;
+            } else {
+                activeFilterBadge.classList.add('hidden');
+            }
+
+            if (filtered.length === 0) {
+                destinationsGrid.innerHTML = '';
+                noResultsEl.classList.remove('hidden');
+                noResultsEl.classList.add('flex');
+                return;
+            }
+
+            noResultsEl.classList.add('hidden');
+            noResultsEl.classList.remove('flex');
+
+            destinationsGrid.innerHTML = filtered.map(item => {
+                let iconClass = "fa-map-pin";
+                if (item.category === "Belo Horizonte") iconClass = "fa-city";
+                else if (item.category === "Confins") iconClass = "fa-plane-arrival";
+                else if (item.category === "Tarifas Especiais / Tours") iconClass = "fa-route";
+                else if (item.category === "Brumadinho") iconClass = "fa-tree";
+
+                return `
+                    <div onclick="selecionarDestinoSimulador('${item.name.replace(/'/g, "\\'")}', ${item.price})" class="bg-cardBg rounded-xl p-4 border border-gray-800 hover:border-amber-500 transition-all duration-200 flex flex-col justify-between group cursor-pointer shadow-md hover:shadow-amber-500/10">
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div class="flex-1">
+                                <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/20 mb-1">
+                                    ${item.category}
+                                </span>
+                                <h3 class="font-bold text-white text-sm sm:text-base leading-snug group-hover:text-amber-400 transition-colors">
+                                    ${item.name}
+                                </h3>
+                            </div>
+                            <div class="w-8 h-8 rounded-lg bg-darkBg border border-gray-700 flex items-center justify-center text-gray-400 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors flex-shrink-0">
+                                <i class="fa-solid ${iconClass} text-xs"></i>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-gray-800/80 flex items-baseline justify-between">
+                            <span class="text-[11px] text-accent font-semibold flex items-center gap-1 group-hover:underline">
+                                <i class="fa-solid fa-calculator"></i> Clique para cotar
+                            </span>
+                            <div class="text-right">
+                                <span class="text-base sm:text-lg font-extrabold text-emerald-400 tracking-tight">
+                                    ${formatCurrency(item.price)}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            searchTerm = e.target.value;
+            if (searchTerm) {
+                clearSearchBtn.classList.remove('hidden');
+            } else {
+                clearSearchBtn.classList.add('hidden');
+            }
+            renderTable();
+        });
+
+        clearSearchBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            searchTerm = '';
+            clearSearchBtn.classList.add('hidden');
+            searchInput.focus();
+            renderTable();
+        });
+
+        resetSearchBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            searchTerm = '';
+            selectedCategory = "TODOS";
+            clearSearchBtn.classList.add('hidden');
+            initCategories();
+            renderTable();
+        });
+
         // Assistente Virtual Inteligente
         const botAnswers = {
-            valores: "💰 <strong>Tarifas e Orçamentos:</strong> Trabalhamos com valores fixos combinados com antecedência para sua tranquilidade, ou pelo taxímetro oficial. Preencha o simulador acima e envie para o nosso WhatsApp (31) 98428-0227!",
+            valores: "💰 <strong>Tarifas e Tabela Oficial:</strong> Nossos preços seguem rigorosamente a Portaria Nº 5.884/2026. Você pode pesquisar qualquer bairro ou cidade na nossa <strong>Tabela Oficial</strong> nesta página e clicar no destino para preencher o simulador automaticamente!",
             madrugada: "🌙 <strong>Atendimento na Madrugada:</strong> Sim! Atendemos 24 horas por dia, 7 dias por semana sob agendamento prévio. Seu motorista estará no aeroporto no horário exato do seu voo.",
             atraso: "✈️ <strong>Monitoramento de Voo:</strong> Rastreio o seu voo em tempo real. Se o pouso atrasar ou adiantar, estarei te aguardando no desembarque sem custo de espera!",
             pagamento: "💳 <strong>Formas de Pagamento:</strong> Aceito Pix, cartões de crédito e débito na maquininha a bordo, dinheiro em espécie e faturamento para empresas parceiras cadastradas.",
@@ -870,11 +1258,7 @@
                 
                 const userBubble = document.createElement('div');
                 userBubble.className = 'flex items-start justify-end gap-3 max-w-[85%] ml-auto';
-                userBubble.innerHTML = `
-                    <div class="bg-blue-600 text-white rounded-2xl p-3 text-xs leading-relaxed shadow-sm">
-                        Pergunta rápida: ${chave.toUpperCase()}
-                    </div>
-                `;
+                userBubble.innerHTML = `<div class="bg-blue-600 text-white rounded-2xl p-3 text-xs leading-relaxed shadow-sm">Pergunta rápida: ${chave.toUpperCase()}</div>`;
                 chatWin.appendChild(userBubble);
 
                 setTimeout(() => {
@@ -901,35 +1285,20 @@
             if (!texto) return;
 
             const chatWin = document.getElementById('chat-messages');
-
             const userMsg = document.createElement('div');
             userMsg.className = 'flex items-start justify-end gap-3 max-w-[85%] ml-auto';
-            userMsg.innerHTML = `
-                <div class="bg-blue-600 text-white rounded-2xl p-3 text-xs leading-relaxed shadow-sm">
-                    ${texto}
-                </div>
-            `;
+            userMsg.innerHTML = `<div class="bg-blue-600 text-white rounded-2xl p-3 text-xs leading-relaxed shadow-sm">${texto}</div>`;
             chatWin.appendChild(userMsg);
             input.value = '';
             chatWin.scrollTop = chatWin.scrollHeight;
 
             setTimeout(() => {
-                let resposta = "Entendi sua dúvida! Para agendamentos imediatos ou detalhes personalizados sobre '" + texto + "', fale diretamente comigo pelo WhatsApp <strong>(31) 98428-0227</strong>.";
-                
+                let resposta = "Para agendamentos imediatos ou detalhes personalizados sobre '" + texto + "', fale diretamente comigo pelo WhatsApp <strong>(31) 98428-0227</strong>.";
                 const txtLower = texto.toLowerCase();
-                if (txtLower.includes('preço') || txtLower.includes('valor') || txtLower.includes('quanto') || txtLower.includes('corrida')) {
-                    resposta = botAnswers.valores;
-                } else if (txtLower.includes('madrugada') || txtLower.includes('noite') || txtLower.includes('horario')) {
-                    resposta = botAnswers.madrugada;
-                } else if (txtLower.includes('atraso') || txtLower.includes('atrasar') || txtLower.includes('voo')) {
-                    resposta = botAnswers.atraso;
-                } else if (txtLower.includes('cartao') || txtLower.includes('pix') || txtLower.includes('pagar') || txtLower.includes('dinheiro')) {
-                    resposta = botAnswers.pagamento;
-                } else if (txtLower.includes('mala') || txtLower.includes('bagagem') || txtLower.includes('porta-malas')) {
-                    resposta = botAnswers.bagagens;
-                } else if (txtLower.includes('pet') || txtLower.includes('cachorro') || txtLower.includes('gato') || txtLower.includes('animal')) {
-                    resposta = botAnswers.pets;
-                }
+                if (txtLower.includes('preço') || txtLower.includes('valor') || txtLower.includes('tabela')) resposta = botAnswers.valores;
+                else if (txtLower.includes('madrugada')) resposta = botAnswers.madrugada;
+                else if (txtLower.includes('voo') || txtLower.includes('atraso')) resposta = botAnswers.atraso;
+                else if (txtLower.includes('pagar') || txtLower.includes('pix')) resposta = botAnswers.pagamento;
 
                 const botMsg = document.createElement('div');
                 botMsg.className = 'flex items-start gap-3 max-w-[85%]';
@@ -960,14 +1329,14 @@
             `;
         }
 
-        // Modais
-        function openModal(id) {
-            document.getElementById(id).classList.remove('hidden');
-        }
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
-        function closeModal(id) {
-            document.getElementById(id).classList.add('hidden');
-        }
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            initCategories();
+            renderTable();
+        });
     </script>
 </body>
 </html>
