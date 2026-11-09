@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miter Táxi Especial CNF | Aeroporto de Confins - Motorista Credenciado</title>
+    <title>Miter Táxi Especial CNF | Aeroporto de Confins</title>
     <meta name="description" content="Táxi executivo credenciado no Aeroporto de Confins (CNF). Traslados seguros, pontuais e confortáveis para Belo Horizonte e região.">
    
     <!-- Tailwind CSS CDN -->
@@ -14,9 +14,9 @@
             theme: {
                 extend: {
                     colors: {
-                        darkBg: '#0b0f17',
-                        cardBg: '#131c2e',
-                        cardLight: '#1e293b',
+                        darkBg: '#090d16',
+                        cardBg: '#111927',
+                        cardBorder: '#1e293b',
                         accent: '#3b82f6',
                         accentHover: '#2563eb',
                         gold: '#d4af37'
@@ -29,21 +29,24 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass {
-            background: rgba(19, 28, 46, 0.75);
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #090d16;
+        }
+        .glass-nav {
+            background: rgba(9, 13, 22, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         .chat-scroll::-webkit-scrollbar {
-            width: 6px;
+            width: 5px;
         }
         .chat-scroll::-webkit-scrollbar-track {
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(17, 25, 39, 0.5);
         }
         .chat-scroll::-webkit-scrollbar-thumb {
             background: #3b82f6;
@@ -54,15 +57,15 @@
 <body class="bg-darkBg text-gray-100 antialiased selection:bg-blue-600 selection:text-white">
 
     <!-- Header / Navbar -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-gray-800/60">
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
-                    <i class="fa-solid fa-taxi text-xl"></i>
+                <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-600/40">
+                    <i class="fa-solid fa-car text-lg"></i>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-xl font-bold tracking-wider text-white leading-none">MITER<span class="text-accent">TAXI</span></span>
-                    <span class="text-[10px] text-gray-400 font-medium tracking-widest uppercase">Aeroporto Confins • CNF</span>
+                    <span class="text-xl font-extrabold tracking-wider text-white leading-none">MITER<span class="text-accent">TAXI</span></span>
+                    <span class="text-[10px] text-gray-400 font-medium tracking-widest uppercase mt-0.5">AEROPORTO CONFINS • CNF</span>
                 </div>
             </a>
           
@@ -75,7 +78,7 @@
             </nav>
 
             <div class="flex items-center gap-3 sm:gap-4">
-                <a href="https://www.instagram.com/mitertaxi" target="_blank" rel="noopener noreferrer" title="Instagram @mitertaxi" class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white hover:opacity-90 transition-all shadow-md">
+                <a href="https://www.instagram.com/mitertaxi" target="_blank" rel="noopener noreferrer" title="Instagram @mitertaxi" class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white hover:opacity-90 transition-all shadow-md">
                     <i class="fa-brands fa-instagram text-lg"></i>
                 </a>
 
@@ -83,14 +86,14 @@
                     <i class="fa-brands fa-whatsapp mr-2 text-base"></i> WhatsApp
                 </a>
 
-                <button id="menu-btn" aria-label="Abrir Menu Mobile" class="md:hidden text-gray-300 focus:outline-none p-2 rounded-lg bg-gray-800/60 border border-gray-700">
+                <button id="menu-btn" aria-label="Abrir Menu Mobile" class="md:hidden text-gray-300 focus:outline-none p-2 rounded-xl bg-cardBg border border-gray-800">
                     <i class="fa-solid fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass border-b border-gray-800 px-4 pt-3 pb-6 space-y-3">
+        <div id="mobile-menu" class="hidden md:hidden glass-nav px-4 pt-3 pb-6 space-y-3">
             <a href="#diferenciais" class="block py-2 text-gray-300 hover:text-accent font-medium">Diferenciais</a>
             <a href="#servicos" class="block py-2 text-gray-300 hover:text-accent font-medium">Serviços</a>
             <a href="#sobre" class="block py-2 text-gray-300 hover:text-accent font-medium">Sobre Mim</a>
@@ -107,13 +110,12 @@
         </div>
     </header>
 
-    <!-- Hero Section with Slideshow Carousel -->
+    <!-- Hero Section com Slideshow de 3 Fotos -->
     <section class="relative pt-28 pb-16 lg:pt-36 lg:pb-28 overflow-hidden">
-        <div class="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-600 via-transparent to-transparent"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 
-                <!-- Left Text Column -->
+                <!-- Texto Hero (Esquerda) -->
                 <div class="lg:col-span-7 space-y-6">
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-500/10 text-accent border border-blue-500/20">
                         <i class="fa-solid fa-plane-arrival text-sm"></i> Aeroporto Internacional de Confins (CNF)
@@ -152,41 +154,41 @@
                     </div>
                 </div>
 
-                <!-- Right Photo Slideshow Column (3 images with arrows & indicators) -->
+                <!-- Carrossel de 3 Fotos (Direita) -->
                 <div class="lg:col-span-5 relative">
                     <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 rounded-2xl blur-lg opacity-40"></div>
                     
-                    <div class="relative rounded-2xl overflow-hidden border border-gray-700/80 bg-cardBg p-2 shadow-2xl">
+                    <div class="relative rounded-2xl overflow-hidden border border-gray-800 bg-cardBg p-2 shadow-2xl">
                         <div class="relative h-[340px] sm:h-[400px] w-full rounded-xl overflow-hidden bg-gray-900">
                             
-                            <!-- Slide 1 -->
+                            <!-- Foto 1 -->
                             <div class="slide-item absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out">
-                                <img src="1000392566.jpg" alt="Miter Táxi 261 Logo" class="w-full h-full object-contain bg-black p-4" onerror="this.onerror=null; this.src='https://placehold.co/600x600/0b0f17/3b82f6?text=Miter+Taxi+261';">
+                                <img src="1000392566.jpg" alt="Miter Táxi 261 Logo" class="w-full h-full object-contain bg-black p-4" onerror="this.onerror=null; this.src='https://placehold.co/600x600/090d16/3b82f6?text=Miter+Taxi+261';">
                                 <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 text-center">
                                     <span class="text-xs font-bold uppercase tracking-widest text-accent bg-blue-950/80 px-2.5 py-1 rounded-full border border-blue-500/30">Identidade Oficial</span>
                                     <p class="text-sm font-semibold text-white mt-1">"Te servir é o meu prazer. Pontualidade é o meu dever."</p>
                                 </div>
                             </div>
 
-                            <!-- Slide 2 -->
+                            <!-- Foto 2 -->
                             <div class="slide-item absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
-                                <img src="1000392567.jpg" alt="Veículo Renault Logan Táxi Especial em Confins" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x600/1e293b/ffffff?text=Veiculo+Credenciado';">
+                                <img src="1000392567.jpg" alt="Veículo Renault Logan Táxi Especial em Confins" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x600/111927/ffffff?text=Veiculo+Credenciado';">
                                 <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 text-center">
                                     <span class="text-xs font-bold uppercase tracking-widest text-green-400 bg-green-950/80 px-2.5 py-1 rounded-full border border-green-500/30">Frota Executiva</span>
                                     <p class="text-sm font-semibold text-white mt-1">Veículo vistoriado e higienizado pronto para traslados</p>
                                 </div>
                             </div>
 
-                            <!-- Slide 3 -->
+                            <!-- Foto 3 -->
                             <div class="slide-item absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
-                                <img src="1000392568.jpg" alt="Viagem Miter Táxi em Santa Cruz e Interior de MG" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x600/131c2e/ffffff?text=Viagens+Intermunicipais';">
+                                <img src="1000392568.jpg" alt="Viagem Miter Táxi em Santa Cruz e Interior de MG" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x600/111927/ffffff?text=Viagens+Intermunicipais';">
                                 <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 text-center">
                                     <span class="text-xs font-bold uppercase tracking-widest text-amber-300 bg-amber-950/80 px-2.5 py-1 rounded-full border border-amber-500/30">Viagens Especiais</span>
-                                    <p class="text-sm font-semibold text-white mt-1">Atendimento seguro para BH, Região Metropolitana e cidades de MG</p>
+                                    <p class="text-sm font-semibold text-white mt-1">Atendimento seguro para BH, Região Metropolitana e interior de MG</p>
                                 </div>
                             </div>
 
-                            <!-- Navigation Arrows -->
+                            <!-- Controles Manuais do Slide -->
                             <button id="prev-slide" aria-label="Imagem Anterior" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-blue-600 text-white flex items-center justify-center backdrop-blur-md transition-all border border-white/10 z-20">
                                 <i class="fa-solid fa-chevron-left text-sm"></i>
                             </button>
@@ -194,7 +196,7 @@
                                 <i class="fa-solid fa-chevron-right text-sm"></i>
                             </button>
 
-                            <!-- Slide Indicators Dots -->
+                            <!-- Indicadores do Slide -->
                             <div class="absolute top-4 right-4 flex gap-1.5 z-20 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
                                 <button class="slide-dot w-2.5 h-2.5 rounded-full bg-blue-500 transition-all" onclick="goToSlide(0)" aria-label="Slide 1"></button>
                                 <button class="slide-dot w-2.5 h-2.5 rounded-full bg-white/40 transition-all" onclick="goToSlide(1)" aria-label="Slide 2"></button>
@@ -208,7 +210,7 @@
         </div>
     </section>
 
-    <!-- Diferenciais Cards (Lighter background for high visibility) -->
+    <!-- Cards de Diferenciais -->
     <section id="diferenciais" class="py-20 bg-darkBg border-t border-gray-800/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -219,34 +221,34 @@
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Card 1 -->
-                <div class="rounded-2xl bg-slate-800/90 p-8 border border-slate-700 shadow-xl hover:border-blue-500 transition-all duration-300 group hover:-translate-y-1">
-                    <div class="w-14 h-14 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
+                <div class="rounded-2xl bg-cardBg p-8 border border-gray-800 shadow-xl hover:border-blue-500 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
                         <i class="fa-solid fa-shield-halved text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3">Credenciado & Confiável</h3>
-                    <p class="text-gray-200 text-sm leading-relaxed">
+                    <p class="text-gray-300 text-sm leading-relaxed">
                         Motorista devidamente regulamentado e credenciado na praça do Aeroporto de Confins (CNF), garantindo transporte 100% legalizado, seguro e autorizado.
                     </p>
                 </div>
                 
                 <!-- Card 2 -->
-                <div class="rounded-2xl bg-slate-800/90 p-8 border border-slate-700 shadow-xl hover:border-blue-500 transition-all duration-300 group hover:-translate-y-1">
-                    <div class="w-14 h-14 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
+                <div class="rounded-2xl bg-cardBg p-8 border border-gray-800 shadow-xl hover:border-blue-500 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
                         <i class="fa-solid fa-clock text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3">Pontualidade Britânica</h3>
-                    <p class="text-gray-200 text-sm leading-relaxed">
+                    <p class="text-gray-300 text-sm leading-relaxed">
                         Monitoramento contínuo do horário dos voos. Caso o seu voo antecipe ou atrase, estarei pronto no terminal sem sobrotaxas extras de espera.
                     </p>
                 </div>
                 
                 <!-- Card 3 -->
-                <div class="rounded-2xl bg-slate-800/90 p-8 border border-slate-700 shadow-xl hover:border-blue-500 transition-all duration-300 group hover:-translate-y-1">
-                    <div class="w-14 h-14 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
+                <div class="rounded-2xl bg-cardBg p-8 border border-gray-800 shadow-xl hover:border-blue-500 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
                         <i class="fa-solid fa-car-side text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3">Conforto & Discrição</h3>
-                    <p class="text-gray-200 text-sm leading-relaxed">
+                    <p class="text-gray-300 text-sm leading-relaxed">
                         Veículo confortável, limpo, higienizado e com amplo porta-malas. Atendimento cortês e silencioso para sua maior comodidade.
                     </p>
                 </div>
@@ -255,10 +257,11 @@
     </section>
 
     <!-- Serviços Principais -->
-    <section id="servicos" class="py-20 bg-cardBg/40 border-t border-gray-800/40">
+    <section id="servicos" class="py-20 bg-darkBg border-t border-gray-800/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-4">Serviços Especializados</h2>
+                <span class="text-accent font-semibold text-xs tracking-widest uppercase">Especialidades</span>
+                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mt-2 mb-4">Serviços Especializados</h2>
                 <p class="text-gray-400">Atendimento sob medida para passageiros exigentes e corporativos.</p>
             </div>
 
@@ -266,7 +269,7 @@
                 <!-- Serviço 1 -->
                 <div class="rounded-2xl bg-cardBg border border-gray-800 p-8 flex flex-col justify-between hover:border-gray-700 transition-all">
                     <div>
-                        <div class="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-accent mb-6">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-accent mb-6">
                             <i class="fa-solid fa-plane-departure text-2xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-4">Traslados CNF ⇄ BH</h3>
@@ -284,7 +287,7 @@
                 <!-- Serviço 2 -->
                 <div class="rounded-2xl bg-cardBg border border-gray-800 p-8 flex flex-col justify-between hover:border-gray-700 transition-all">
                     <div>
-                        <div class="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-accent mb-6">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-accent mb-6">
                             <i class="fa-solid fa-briefcase text-2xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-4">Viagens Corporativas</h3>
@@ -302,7 +305,7 @@
                 <!-- Serviço 3 -->
                 <div class="rounded-2xl bg-cardBg border border-gray-800 p-8 flex flex-col justify-between hover:border-gray-700 transition-all">
                     <div>
-                        <div class="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-accent mb-6">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-accent mb-6">
                             <i class="fa-solid fa-map-location-dot text-2xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-4">Viagens Intermunicipais</h3>
@@ -355,7 +358,7 @@
                     </div>
                 </div>
 
-                <div class="rounded-2xl glass p-8 border border-gray-800 space-y-6">
+                <div class="rounded-2xl bg-cardBg p-8 border border-gray-800 space-y-6 shadow-2xl">
                     <h3 class="text-xl font-bold text-white border-b border-gray-800 pb-4 flex items-center gap-2">
                         <i class="fa-solid fa-circle-check text-accent"></i> Garantias Miter Táxi
                     </h3>
@@ -374,10 +377,10 @@
                         </li>
                     </ul>
                     <div class="pt-2 flex flex-col sm:flex-row gap-3">
-                        <button onclick="openModal('modal-autenticidade')" class="flex-1 py-3 px-4 rounded-xl bg-gray-800/90 hover:bg-gray-700 text-xs font-semibold text-gray-200 border border-gray-700 flex items-center justify-center gap-2 transition-all">
+                        <button onclick="openModal('modal-autenticidade')" class="flex-1 py-3 px-4 rounded-xl bg-darkBg hover:bg-gray-800 text-xs font-semibold text-gray-200 border border-gray-700 flex items-center justify-center gap-2 transition-all">
                             <i class="fa-solid fa-certificate text-gold"></i> Termos de Autenticidade
                         </button>
-                        <button onclick="openModal('modal-privacidade')" class="flex-1 py-3 px-4 rounded-xl bg-gray-800/90 hover:bg-gray-700 text-xs font-semibold text-gray-200 border border-gray-700 flex items-center justify-center gap-2 transition-all">
+                        <button onclick="openModal('modal-privacidade')" class="flex-1 py-3 px-4 rounded-xl bg-darkBg hover:bg-gray-800 text-xs font-semibold text-gray-200 border border-gray-700 flex items-center justify-center gap-2 transition-all">
                             <i class="fa-solid fa-user-shield text-accent"></i> Privacidade (LGPD)
                         </button>
                     </div>
@@ -386,8 +389,8 @@
         </div>
     </section>
 
-    <!-- Simulador de Corrida (Fully editable, clearable, direct to WhatsApp 31984280227) -->
-    <section id="simulador" class="py-20 bg-cardBg/40 border-t border-gray-800/40">
+    <!-- Simulador de Corrida Editável -->
+    <section id="simulador" class="py-20 bg-darkBg border-t border-gray-800/40">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <span class="text-green-400 font-semibold text-xs tracking-widest uppercase">Orçamento Sem Compromisso</span>
@@ -464,7 +467,7 @@
                     </div>
                 </div>
 
-                <!-- Opcionais / Checkboxes -->
+                <!-- Checkboxes -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-3">Necessidades Especiais:</label>
                     <div class="grid sm:grid-cols-2 gap-4">
@@ -479,13 +482,13 @@
                     </div>
                 </div>
 
-                <!-- Mensagem Adicional / Observações -->
+                <!-- Observações -->
                 <div>
                     <label for="input-obs" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Observações Adicionais (Editável):</label>
                     <textarea id="input-obs" rows="2" placeholder="Ex: Cadeira infantil necessária, animal de estimação, etc." class="w-full p-3 rounded-xl bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-accent"></textarea>
                 </div>
 
-                <!-- Actions: Clear Form & Submit to WhatsApp 31984280227 -->
+                <!-- Ações -->
                 <div class="pt-4 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <button type="button" onclick="limparSimulador()" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm font-medium transition-all flex items-center justify-center gap-2 border border-gray-700">
                         <i class="fa-solid fa-rotate-left"></i> Limpar / Redefinir Campos
@@ -499,7 +502,7 @@
         </div>
     </section>
 
-    <!-- Assistente Virtual / Dúvidas Frequentes (Quick buttons & chatbox for instant answers) -->
+    <!-- Assistente Virtual -->
     <section id="atendimento-virtual" class="py-20 bg-darkBg border-t border-gray-800/40">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
@@ -508,11 +511,11 @@
                 <p class="text-gray-400">Tire suas dúvidas instantaneamente sobre agendamento de táxi, tarifas, voos e bagagens utilizando os botões rápidos ou conversando no chat abaixo.</p>
             </div>
 
-            <!-- Virtual Assistant Widget -->
-            <div class="rounded-2xl glass border border-gray-800 overflow-hidden shadow-2xl grid lg:grid-cols-12">
+            <!-- Widget do Chat -->
+            <div class="rounded-2xl bg-cardBg border border-gray-800 overflow-hidden shadow-2xl grid lg:grid-cols-12">
                 
-                <!-- Left Options Menu (Quick Buttons) -->
-                <div class="lg:col-span-4 bg-cardBg/90 p-5 border-r border-gray-800 flex flex-col justify-between">
+                <!-- Menu Lateral de Botões -->
+                <div class="lg:col-span-4 bg-darkBg/60 p-5 border-r border-gray-800 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center gap-3 pb-4 border-b border-gray-800 mb-4">
                             <div class="w-10 h-10 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-accent">
@@ -528,27 +531,27 @@
 
                         <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Dúvidas Frequentes (Clique):</p>
                         <div class="space-y-2">
-                            <button onclick="perguntarAssistente('valores')" class="w-full p-2.5 rounded-xl bg-darkBg/70 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
+                            <button onclick="perguntarAssistente('valores')" class="w-full p-2.5 rounded-xl bg-darkBg hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
                                 <span><i class="fa-solid fa-calculator text-accent mr-2"></i> Tarifas & Orçamentos</span>
                                 <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
                             </button>
-                            <button onclick="perguntarAssistente('madrugada')" class="w-full p-2.5 rounded-xl bg-darkBg/70 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
+                            <button onclick="perguntarAssistente('madrugada')" class="w-full p-2.5 rounded-xl bg-darkBg hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
                                 <span><i class="fa-solid fa-moon text-amber-400 mr-2"></i> Voos na Madrugada</span>
                                 <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
                             </button>
-                            <button onclick="perguntarAssistente('atraso')" class="w-full p-2.5 rounded-xl bg-darkBg/70 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
+                            <button onclick="perguntarAssistente('atraso')" class="w-full p-2.5 rounded-xl bg-darkBg hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
                                 <span><i class="fa-solid fa-plane-slash text-red-400 mr-2"></i> E se o voo atrasar?</span>
                                 <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
                             </button>
-                            <button onclick="perguntarAssistente('pagamento')" class="w-full p-2.5 rounded-xl bg-darkBg/70 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
+                            <button onclick="perguntarAssistente('pagamento')" class="w-full p-2.5 rounded-xl bg-darkBg hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
                                 <span><i class="fa-solid fa-credit-card text-green-400 mr-2"></i> Formas de Pagamento</span>
                                 <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
                             </button>
-                            <button onclick="perguntarAssistente('bagagens')" class="w-full p-2.5 rounded-xl bg-darkBg/70 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
+                            <button onclick="perguntarAssistente('bagagens')" class="w-full p-2.5 rounded-xl bg-darkBg hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
                                 <span><i class="fa-solid fa-suitcase text-indigo-400 mr-2"></i> Limite de Bagagens</span>
                                 <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
                             </button>
-                            <button onclick="perguntarAssistente('pets')" class="w-full p-2.5 rounded-xl bg-darkBg/70 hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
+                            <button onclick="perguntarAssistente('pets')" class="w-full p-2.5 rounded-xl bg-darkBg hover:bg-blue-600/20 hover:border-blue-500/50 border border-gray-800 text-left text-xs font-medium text-gray-300 flex items-center justify-between transition-all">
                                 <span><i class="fa-solid fa-dog text-pink-400 mr-2"></i> Transporte de Pets</span>
                                 <i class="fa-solid fa-chevron-right text-[10px] text-gray-500"></i>
                             </button>
@@ -562,10 +565,9 @@
                     </div>
                 </div>
 
-                <!-- Right Chat Screen -->
-                <div class="lg:col-span-8 bg-darkBg/95 flex flex-col h-[480px]">
+                <!-- Janela de Chat -->
+                <div class="lg:col-span-8 bg-darkBg flex flex-col h-[480px]">
                     
-                    <!-- Chat Header -->
                     <div class="p-4 border-b border-gray-800 bg-cardBg/40 flex items-center justify-between">
                         <div class="flex items-center gap-2 text-xs text-gray-300">
                             <i class="fa-solid fa-comments text-accent"></i>
@@ -576,10 +578,7 @@
                         </button>
                     </div>
 
-                    <!-- Messages Window -->
                     <div id="chat-messages" class="chat-scroll flex-1 p-4 overflow-y-auto space-y-4">
-                        
-                        <!-- Initial Bot Message -->
                         <div class="flex items-start gap-3 max-w-[85%]">
                             <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs shrink-0 mt-1">
                                 <i class="fa-solid fa-taxi"></i>
@@ -589,10 +588,8 @@
                                 Como posso te ajudar hoje? Selecione uma dúvida à esquerda ou digite sua pergunta na caixa de texto abaixo!
                             </div>
                         </div>
-
                     </div>
 
-                    <!-- Chat Input Bar -->
                     <div class="p-3 border-t border-gray-800 bg-cardBg/60">
                         <form onsubmit="enviarMensagemChat(event)" class="flex items-center gap-2">
                             <input type="text" id="chat-input" placeholder="Digite sua pergunta (ex: preço, aeroporto, mala)..." class="flex-1 bg-darkBg border border-gray-700 text-white placeholder-gray-500 text-xs rounded-xl px-4 py-3 focus:outline-none focus:border-accent">
@@ -608,16 +605,15 @@
         </div>
     </section>
 
-    <!-- Footer (Direct links to WhatsApp 5531984280227 & Instagram @mitertaxi) -->
+    <!-- Rodapé -->
     <footer class="bg-cardBg border-t border-gray-800 pt-12 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-gray-800">
                 
-                <!-- Brand Info -->
                 <div class="md:col-span-2 space-y-4">
                     <div class="flex items-center gap-3">
                         <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white">
-                            <i class="fa-solid fa-taxi"></i>
+                            <i class="fa-solid fa-car"></i>
                         </div>
                         <span class="text-xl font-bold tracking-wider text-white">MITER<span class="text-accent">TAXI</span></span>
                     </div>
@@ -634,7 +630,6 @@
                     </div>
                 </div>
 
-                <!-- Quick Navigation -->
                 <div>
                     <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Navegação</h4>
                     <ul class="space-y-2 text-xs text-gray-400">
@@ -646,7 +641,6 @@
                     </ul>
                 </div>
 
-                <!-- Legal & Contact -->
                 <div>
                     <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Legal & Contato</h4>
                     <ul class="space-y-2 text-xs text-gray-400 mb-4">
@@ -661,7 +655,6 @@
 
             </div>
 
-            <!-- Copyright -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
                 <p>&copy; 2026 Miter Táxi CNF. Todos os direitos reservados. Motorista Credenciado no Aeroporto de Confins.</p>
                 <div class="flex items-center gap-4">
@@ -673,7 +666,7 @@
         </div>
     </footer>
 
-    <!-- MODAL 1: Termos de Privacidade (LGPD) -->
+    <!-- Modais -->
     <div id="modal-privacidade" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
         <div class="bg-cardBg border border-gray-700 rounded-2xl max-w-xl w-full p-6 space-y-4 relative max-h-[90vh] overflow-y-auto">
             <button onclick="closeModal('modal-privacidade')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
@@ -697,7 +690,6 @@
         </div>
     </div>
 
-    <!-- MODAL 2: Autenticidade e Licenciamento CNF -->
     <div id="modal-autenticidade" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
         <div class="bg-cardBg border border-gray-700 rounded-2xl max-w-xl w-full p-6 space-y-4 relative max-h-[90vh] overflow-y-auto">
             <button onclick="closeModal('modal-autenticidade')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
@@ -721,16 +713,16 @@
         </div>
     </div>
 
-    <!-- JavaScript Application Logic -->
+    <!-- Scripts da Aplicação -->
     <script>
-        // Mobile Menu Toggle
+        // Menu Mobile
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // 1. Photo Slideshow Carousel Logic
+        // Carrossel de Fotos
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide-item');
         const dots = document.querySelectorAll('.slide-dot');
@@ -791,10 +783,9 @@
             resetSlideTimer();
         });
 
-        // Start automatic slideshow timer
         slideInterval = setInterval(nextSlide, 4500);
 
-        // 3. Simulator Form Logic & WhatsApp Submission (31984280227)
+        // Simulador & WhatsApp (31 98428-0227)
         let sentidoRotaSelecionada = 'Confins (CNF) ➔ Belo Horizonte / Região';
 
         function setSentidoRota(sentido) {
@@ -863,7 +854,7 @@
             window.open(`https://wa.me/${phone}?text=${mensagem}`, '_blank');
         }
 
-        // 4. Virtual Assistant Chatbot Logic
+        // Assistente Virtual Inteligente
         const botAnswers = {
             valores: "💰 <strong>Tarifas e Orçamentos:</strong> Trabalhamos com valores fixos combinados com antecedência para sua tranquilidade, ou pelo taxímetro oficial. Preencha o simulador acima e envie para o nosso WhatsApp (31) 98428-0227!",
             madrugada: "🌙 <strong>Atendimento na Madrugada:</strong> Sim! Atendemos 24 horas por dia, 7 dias por semana sob agendamento prévio. Seu motorista estará no aeroporto no horário exato do seu voo.",
@@ -969,7 +960,7 @@
             `;
         }
 
-        // 5. Modal Controllers
+        // Modais
         function openModal(id) {
             document.getElementById(id).classList.remove('hidden');
         }
